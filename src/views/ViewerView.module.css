@@ -1,25 +1,29 @@
 .viewerPage {
-  min-height: 100vh;
+  flex: 1;
+  min-height: 100%;
+  min-height: 100dvh;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px 16px;
+  padding: clamp(12px, 2.5vh, 24px) 16px;
   background-color: var(--md-sys-color-background);
   box-sizing: border-box;
+  overscroll-behavior-y: none;
 }
 
 .cardArea {
   width: 100%;
   max-width: 440px;
+  margin: auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .footer {
-  margin-top: 24px;
+  margin-top: clamp(10px, 2vh, 20px);
   display: flex;
   align-items: center;
   gap: 8px;
@@ -43,21 +47,21 @@
 .errorCard {
   width: 100%;
   max-width: 440px;
-  padding: 32px 24px;
+  padding: clamp(20px, 3.5vh, 32px) clamp(16px, 4vw, 24px);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 16px;
+  gap: clamp(12px, 2vh, 16px);
   background-color: var(--md-sys-color-surface-container);
-  border: 1px solid var(--md-sys-color-outline-variant);
+  border: none;
   border-radius: var(--md-sys-shape-corner-extra-large);
   box-shadow: var(--md-sys-elevation-2);
 }
 
 .errorIconWrapper {
-  width: 64px;
-  height: 64px;
+  width: clamp(52px, 7vh, 64px);
+  height: clamp(52px, 7vh, 64px);
   border-radius: var(--md-sys-shape-corner-full);
   background-color: var(--md-sys-color-error-container);
   color: var(--md-sys-color-on-error-container);
@@ -67,7 +71,7 @@
 }
 
 .errorTitle {
-  font-size: var(--md-sys-typescale-headline-small);
+  font-size: clamp(20px, 3.5vw, 24px);
   font-weight: 700;
   color: var(--md-sys-color-error);
 }

@@ -8,7 +8,7 @@
 }
 
 .cardInner {
-  padding: 32px 24px;
+  padding: clamp(20px, 3.5vh, 28px) clamp(16px, 4vw, 24px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,12 +28,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: clamp(12px, 2vh, 18px);
 }
 
 .iconSquircle {
-  width: 64px;
-  height: 64px;
+  width: clamp(52px, 7vh, 64px);
+  height: clamp(52px, 7vh, 64px);
   border-radius: var(--md-sys-shape-corner-large);
   background-color: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
@@ -43,32 +43,32 @@
 }
 
 .badgeWrapper {
-  margin-top: 12px;
+  margin-top: clamp(8px, 1.2vh, 12px);
 }
 
 /* Title & Content */
 .title {
-  font-size: var(--md-sys-typescale-headline-small);
+  font-size: clamp(20px, 3.5vw, 24px);
   font-weight: 400;
   color: var(--md-sys-color-on-surface);
-  line-height: 32px;
-  margin-bottom: 20px;
+  line-height: 1.3;
+  margin-bottom: clamp(12px, 2vh, 18px);
   word-break: break-word;
 }
 
 .contentArea {
   width: 100%;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: clamp(12px, 2vh, 18px);
 }
 
 .messageBox {
   font-size: var(--md-sys-typescale-body-large);
   color: var(--md-sys-color-on-surface-variant);
-  line-height: 24px;
+  line-height: 1.45;
   white-space: pre-wrap;
   word-break: break-word;
-  padding: 20px;
+  padding: clamp(14px, 2vh, 20px);
   background-color: var(--md-sys-color-surface-container-high);
   border-radius: var(--md-sys-shape-corner-large);
   border: none;
@@ -79,6 +79,7 @@
 .blurWrapper {
   position: relative;
   width: 100%;
+  min-height: 80px;
   border-radius: var(--md-sys-shape-corner-large);
   overflow: hidden;
 }
@@ -110,7 +111,7 @@
   border: 1px dashed var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-primary);
   font-weight: 500;
-  padding: 24px;
+  padding: clamp(14px, 2vh, 24px);
   transition: all var(--md-sys-motion-duration-short) ease;
   z-index: 2;
 }
@@ -131,9 +132,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: clamp(12px, 1.8vh, 16px);
   width: 100%;
-  padding: 24px 16px;
+  padding: clamp(16px, 2.5vh, 22px) 16px;
   background-color: var(--md-sys-color-surface-container-high);
   border-radius: var(--md-sys-shape-corner-large);
   border: none;
@@ -141,8 +142,8 @@
 }
 
 .lockIconWrap {
-  width: 48px;
-  height: 48px;
+  width: clamp(40px, 5vh, 48px);
+  height: clamp(40px, 5vh, 48px);
   border-radius: var(--md-sys-shape-corner-full);
   background-color: var(--md-sys-color-surface-container-highest);
   color: var(--md-sys-color-primary);
@@ -161,14 +162,14 @@
 .lockForm {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(12px, 1.8vh, 16px);
   width: 100%;
 }
 
 /* Accordion for Secret Hint */
 .hintSection {
   width: 100%;
-  margin-top: 8px;
+  margin-top: 4px;
   border-radius: var(--md-sys-shape-corner-medium);
   border: none;
   background-color: var(--md-sys-color-surface-container-high);
@@ -181,7 +182,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
+  padding: clamp(10px, 1.5vh, 14px) 16px;
   background: transparent;
   color: var(--md-sys-color-primary);
   font-size: var(--md-sys-typescale-label-large);
@@ -202,7 +203,7 @@
 }
 
 .hintBody {
-  padding: 4px 16px 16px 16px;
+  padding: 4px 16px 14px 16px;
   font-size: var(--md-sys-typescale-body-medium);
   color: var(--md-sys-color-on-surface-variant);
   text-align: left;
