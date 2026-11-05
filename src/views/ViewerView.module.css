@@ -1,0 +1,79 @@
+.viewerPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background-color: var(--md-sys-color-background);
+  box-sizing: border-box;
+}
+
+.cardArea {
+  width: 100%;
+  max-width: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--md-sys-typescale-body-small);
+  color: var(--md-sys-color-outline);
+}
+
+.footerLink {
+  color: var(--md-sys-color-on-surface-variant);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--md-sys-motion-duration-short) ease;
+}
+
+.footerLink:hover {
+  color: var(--md-sys-color-primary);
+  text-decoration: underline;
+}
+
+/* Error card styling */
+.errorCard {
+  width: 100%;
+  max-width: 440px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  background-color: var(--md-sys-color-surface-container);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  box-shadow: var(--md-sys-elevation-2);
+}
+
+.errorIconWrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorTitle {
+  font-size: var(--md-sys-typescale-headline-small);
+  font-weight: 700;
+  color: var(--md-sys-color-error);
+}
+
+.errorDescription {
+  font-size: var(--md-sys-typescale-body-medium);
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 1.5;
+}

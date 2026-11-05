@@ -1,0 +1,40 @@
+.card {
+  position: relative;
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  color: var(--md-sys-color-on-surface);
+  transition: box-shadow var(--md-sys-motion-duration-short) ease,
+              border-color var(--md-sys-motion-duration-short) ease;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.elevated {
+  background-color: var(--md-sys-color-surface-container-low);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.filled {
+  background-color: var(--md-sys-color-surface-container);
+}
+
+.filledHigh {
+  background-color: var(--md-sys-color-surface-container-high);
+}
+
+.outlined {
+  background-color: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
+/* Radius options */
+.radiusMedium {
+  border-radius: var(--md-sys-shape-corner-medium);
+}
+
+.radiusLarge {
+  border-radius: var(--md-sys-shape-corner-large);
+}
+
+.radiusExtraLarge {
+  border-radius: var(--md-sys-shape-corner-extra-large);
+}

@@ -1,0 +1,98 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 24px;
+  border-radius: var(--md-sys-shape-corner-full);
+  font-family: inherit;
+  font-size: var(--md-sys-typescale-label-large);
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--md-sys-motion-duration-short) ease;
+  white-space: nowrap;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.button:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.hasIcon {
+  padding-left: 16px;
+  padding-right: 24px;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Variants */
+.filled {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.filled:hover:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-2);
+  filter: brightness(1.08);
+}
+
+.filled:active:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-1);
+  filter: brightness(0.95);
+}
+
+.tonal {
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+}
+
+.tonal:hover:not(:disabled) {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+.tonal:active:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+.outlined {
+  background-color: transparent;
+  border-color: var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-primary);
+}
+
+.outlined:hover:not(:disabled) {
+  background-color: rgba(var(--md-sys-color-primary-rgb), 0.08);
+  border-color: var(--md-sys-color-primary);
+}
+
+.outlined:active:not(:disabled) {
+  background-color: rgba(var(--md-sys-color-primary-rgb), 0.14);
+}
+
+.text {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  padding: 0 12px;
+}
+
+.text:hover:not(:disabled) {
+  background-color: rgba(var(--md-sys-color-primary-rgb), 0.08);
+}
+
+.text:active:not(:disabled) {
+  background-color: rgba(var(--md-sys-color-primary-rgb), 0.14);
+}

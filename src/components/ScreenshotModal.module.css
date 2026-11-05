@@ -1,0 +1,173 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: rgba(10, 9, 12, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalBackdropFade 200ms ease forwards;
+  overflow: hidden;
+  user-select: none;
+}
+
+.printCard {
+  background-color: #FFFFFF;
+  color: #141218;
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  animation: modalScaleIn 250ms var(--md-sys-motion-easing-emphasized) forwards;
+  max-width: 90vw;
+  box-sizing: border-box;
+}
+
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background-color: #141218;
+  color: #FFFFFF;
+  border-radius: 9999px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.printNote {
+  font-size: 14px;
+  font-weight: 600;
+  color: #49454F;
+  background-color: #F3EDF7;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px dashed #79747E;
+  margin-top: 4px;
+}
+
+.qrWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background-color: #FFFFFF;
+}
+
+.cardFooter {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.scanInstruction {
+  font-size: 13px;
+  font-weight: 600;
+  color: #141218;
+  letter-spacing: 0.2px;
+}
+
+.appName {
+  font-size: 11px;
+  color: #79747E;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Floating controls bar in top corner */
+.floatingControls {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: rgba(33, 31, 38, 0.85);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  transition: opacity 400ms ease, transform 400ms ease;
+  z-index: 1010;
+}
+
+.hiddenControls {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+}
+
+.sizeButtons {
+  display: flex;
+  gap: 4px;
+}
+
+.sizeBtn {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--md-sys-color-on-surface-variant);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.sizeBtn:hover {
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+}
+
+.sizeBtnActive {
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: 600;
+}
+
+.closeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--md-sys-color-on-surface);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background-color 150ms ease;
+}
+
+.closeBtn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Helper tip at bottom */
+.bottomTip {
+  position: absolute;
+  bottom: 24px;
+  color: var(--md-sys-color-outline);
+  font-size: 13px;
+  background-color: rgba(20, 18, 24, 0.8);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}

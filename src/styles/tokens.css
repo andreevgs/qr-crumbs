@@ -1,0 +1,116 @@
+:root {
+  /* Surfaces */
+  --md-sys-color-background: #141218;
+  --md-sys-color-surface: #141218;
+  --md-sys-color-surface-dim: #110F14;
+  --md-sys-color-surface-container-lowest: #0F0D13;
+  --md-sys-color-surface-container-low: #1D1B20;
+  --md-sys-color-surface-container: #211F26;
+  --md-sys-color-surface-container-high: #2B2930;
+  --md-sys-color-surface-container-highest: #36343B;
+
+  /* Text & Outlines */
+  --md-sys-color-on-surface: #E6E0E9;
+  --md-sys-color-on-surface-variant: #CAC4D0;
+  --md-sys-color-outline: #938F99;
+  --md-sys-color-outline-variant: #49454F;
+  --md-sys-color-error: #F2B8B5;
+  --md-sys-color-on-error: #601410;
+  --md-sys-color-error-container: #8C1D18;
+  --md-sys-color-on-error-container: #F9DEDC;
+
+  /* Shapes */
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* Motion */
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0.0, 0, 1.0);
+  --md-sys-motion-duration-short: 150ms;
+  --md-sys-motion-duration-medium: 300ms;
+  --md-sys-motion-duration-long: 400ms;
+
+  /* Elevations */
+  --md-sys-elevation-1: 0 1px 3px 1px rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  --md-sys-elevation-2: 0 2px 6px 2px rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  --md-sys-elevation-3: 0 4px 8px 3px rgba(0, 0, 0, 0.25), 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+  --md-sys-elevation-4: 0 6px 10px 4px rgba(0, 0, 0, 0.25), 0 2px 3px 0 rgba(0, 0, 0, 0.35);
+
+  /* Typography tokens */
+  --md-sys-typescale-display-large: 57px;
+  --md-sys-typescale-headline-large: 32px;
+  --md-sys-typescale-headline-medium: 28px;
+  --md-sys-typescale-headline-small: 24px;
+  --md-sys-typescale-title-large: 22px;
+  --md-sys-typescale-title-medium: 16px;
+  --md-sys-typescale-title-small: 14px;
+  --md-sys-typescale-body-large: 16px;
+  --md-sys-typescale-body-medium: 14px;
+  --md-sys-typescale-body-small: 12px;
+  --md-sys-typescale-label-large: 14px;
+  --md-sys-typescale-label-medium: 12px;
+  --md-sys-typescale-label-small: 11px;
+
+  /* Default theme: Violet */
+  --md-sys-color-primary: #D0BCFF;
+  --md-sys-color-on-primary: #381E72;
+  --md-sys-color-primary-container: #4F378B;
+  --md-sys-color-on-primary-container: #EADDFF;
+  --md-sys-color-primary-rgb: 208, 188, 255;
+  --md-sys-color-primary-glow: rgba(208, 188, 255, 0.25);
+}
+
+/* Dynamic themes */
+:root[data-theme="violet"],
+[data-theme="violet"] {
+  --md-sys-color-primary: #D0BCFF;
+  --md-sys-color-on-primary: #381E72;
+  --md-sys-color-primary-container: #4F378B;
+  --md-sys-color-on-primary-container: #EADDFF;
+  --md-sys-color-primary-rgb: 208, 188, 255;
+  --md-sys-color-primary-glow: rgba(208, 188, 255, 0.25);
+}
+
+:root[data-theme="rose"],
+[data-theme="rose"] {
+  --md-sys-color-primary: #FFB1C8;
+  --md-sys-color-on-primary: #650033;
+  --md-sys-color-primary-container: #8E004A;
+  --md-sys-color-on-primary-container: #FFD9E2;
+  --md-sys-color-primary-rgb: 255, 177, 200;
+  --md-sys-color-primary-glow: rgba(255, 177, 200, 0.25);
+}
+
+:root[data-theme="amber"],
+[data-theme="amber"] {
+  --md-sys-color-primary: #FFB951;
+  --md-sys-color-on-primary: #452B00;
+  --md-sys-color-primary-container: #633F00;
+  --md-sys-color-on-primary-container: #FFDDB3;
+  --md-sys-color-primary-rgb: 255, 185, 81;
+  --md-sys-color-primary-glow: rgba(255, 185, 81, 0.25);
+}
+
+:root[data-theme="emerald"],
+[data-theme="emerald"] {
+  --md-sys-color-primary: #6CDBAC;
+  --md-sys-color-on-primary: #003826;
+  --md-sys-color-primary-container: #005138;
+  --md-sys-color-on-primary-container: #89F8C7;
+  --md-sys-color-primary-rgb: 108, 219, 172;
+  --md-sys-color-primary-glow: rgba(108, 219, 172, 0.25);
+}
+
+:root[data-theme="cyan"],
+[data-theme="cyan"] {
+  --md-sys-color-primary: #4FD8EB;
+  --md-sys-color-on-primary: #00363D;
+  --md-sys-color-primary-container: #004F58;
+  --md-sys-color-on-primary-container: #97F0FF;
+  --md-sys-color-primary-rgb: 79, 216, 235;
+  --md-sys-color-primary-glow: rgba(79, 216, 235, 0.25);
+}
