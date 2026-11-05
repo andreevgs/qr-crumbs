@@ -78,7 +78,6 @@ export const ScreenshotModal: React.FC<ScreenshotModalProps> = ({
     <div
       className={styles.overlay}
       onClick={(e) => {
-        // Exit when clicking the backdrop
         if (e.target === e.currentTarget) {
           onClose();
         }
@@ -115,12 +114,12 @@ export const ScreenshotModal: React.FC<ScreenshotModalProps> = ({
         </div>
 
         <button type="button" className={styles.closeBtn} onClick={onClose}>
-          <Icon name="close" size={18} />
+          <Icon name="close" size={16} />
           <span>Закрыть (Esc)</span>
         </button>
       </div>
 
-      {/* Aesthetic printable card strictly in center */}
+      {/* Printable card strictly in center */}
       <div
         className={styles.printCard}
         style={{ width: `${size + 56}px` }}

@@ -1,18 +1,17 @@
 import LZString from 'lz-string';
-import { CompactPayload, QuestStep, StepIcon, StepLayout, ThemeSeed } from '../types';
+import { CompactPayload, QuestStep, StepLayout, ThemeSeed } from '../types';
 
 const VALID_THEMES: ThemeSeed[] = ['violet', 'rose', 'amber', 'emerald', 'cyan'];
-const VALID_ICONS: StepIcon[] = [
-  'gift',
-  'flame',
-  'snowflake',
-  'search',
-  'heart',
-  'key',
-  'coffee',
-  'sparkles',
-];
 const VALID_LAYOUTS: StepLayout[] = ['standard', 'blur', 'codeLock'];
+
+const LEGACY_ICON_MAP: Record<string, string> = {
+  gift: 'redeem',
+  flame: 'local_fire_department',
+  snowflake: 'ac_unit',
+  heart: 'favorite',
+  key: 'vpn_key',
+  sparkles: 'celebration',
+};
 
 /**
  * Encodes a QuestStep object into a compact, compressed, URL-safe string.
@@ -22,7 +21,7 @@ export function encodeQuestStep(step: QuestStep): string {
     t: step.title.trim(),
     m: step.message.trim(),
     c: VALID_THEMES.includes(step.theme) ? step.theme : 'violet',
-    i: VALID_ICONS.includes(step.icon) ? step.icon : 'gift',
+    i: step.icon || 'redeem',
     l: VALID_LAYOUTS.includes(step.layout) ? step.layout : 'standard',
   };
 
@@ -83,10 +82,10 @@ export function decodeQuestStep(encoded: string): QuestStep | null {
         ? (parsed.c as ThemeSeed)
         : 'violet';
 
-    const icon: StepIcon =
-      parsed.i && VALID_ICONS.includes(parsed.i as StepIcon)
-        ? (parsed.i as StepIcon)
-        : 'gift';
+    let icon = typeof parsed.i === 'string' && parsed.i.trim().length > 0 ? parsed.i.trim() : 'redeem';
+    if (LEGACY_ICON_MAP[icon]) {
+      icon = LEGACY_ICON_MAP[icon];
+    }
 
     const layout: StepLayout =
       parsed.l && VALID_LAYOUTS.includes(parsed.l as StepLayout)

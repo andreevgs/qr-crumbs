@@ -1,34 +1,31 @@
 import React from 'react';
-import styles from './FAB.module.css';
+import { Icon } from './Icon';
+import styles from './Fab.module.css';
 
-export interface FABProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  icon: React.ReactNode;
+export interface FabProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  icon: string | React.ReactNode;
   label?: string;
-  variant?: 'primary' | 'secondary' | 'surface';
-  className?: string;
+  fixedBottomRight?: boolean;
 }
 
-export const FAB: React.FC<FABProps> = ({
+export const Fab: React.FC<FabProps> = ({
   icon,
   label,
-  variant = 'primary',
+  fixedBottomRight = false,
   className = '',
   ...props
 }) => {
   const isExtended = Boolean(label);
 
-  const classNames = [
-    styles.fab,
-    isExtended ? styles.extended : styles.standard,
-    variant !== 'primary' ? styles[variant] : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-
   return (
-    <button type="button" className={classNames} {...props}>
-      <span style={{ display: 'inline-flex', alignItems: 'center' }}>{icon}</span>
+    <button
+      type="button"
+      className={`${styles.fab} ${isExtended ? styles.extended : ''} ${
+        fixedBottomRight ? styles.fixedBottomRight : ''
+      } ${className}`}
+      {...props}
+    >
+      {typeof icon === 'string' ? <Icon name={icon} size={24} /> : icon}
       {label && <span>{label}</span>}
     </button>
   );

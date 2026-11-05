@@ -5,7 +5,7 @@ import styles from './SegmentedButton.module.css';
 export interface SegmentOption<T extends string> {
   value: T;
   label: string;
-  icon?: React.ReactNode;
+  icon?: string | React.ReactNode;
 }
 
 export interface SegmentedButtonProps<T extends string> {
@@ -35,11 +35,13 @@ export function SegmentedButton<T extends string>({
             onClick={() => onChange(opt.value)}
           >
             {isSelected ? (
-              <span className={styles.iconWrapper}>
+              <span className={styles.checkIcon}>
                 <Icon name="check" size={18} />
               </span>
             ) : opt.icon ? (
-              <span className={styles.iconWrapper}>{opt.icon}</span>
+              <span className={styles.checkIcon}>
+                {typeof opt.icon === 'string' ? <Icon name={opt.icon} size={18} /> : opt.icon}
+              </span>
             ) : null}
             <span>{opt.label}</span>
           </button>

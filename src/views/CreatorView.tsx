@@ -1,16 +1,18 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { QuestStep, ThemeSeed, StepIcon, StepLayout } from '../types';
+import { QuestStep, ThemeSeed, StepLayout } from '../types';
 import { encodeQuestStep, buildViewerUrl } from '../utils/codec';
 import { QuestViewerCard } from '../components/QuestViewerCard';
 import { ScreenshotModal } from '../components/ScreenshotModal';
 import {
   Button,
+  IconButton,
+  Fab,
   TextField,
   SegmentedButton,
   Icon,
-  ICON_LABELS,
-  FAB,
+  Tabs,
+  ICON_OPTIONS,
 } from '../components/md3';
 import styles from './CreatorView.module.css';
 
@@ -21,7 +23,7 @@ const DEFAULT_STEP: QuestStep = {
     'Загляни туда, где всегда холоднее, чем в комнате, но хранятся самые вкусные секреты!',
   secretHint: 'Внимание на нижнюю полку рядом с йогуртами.',
   theme: 'violet',
-  icon: 'gift',
+  icon: 'redeem',
   layout: 'blur',
   unlockCode: '',
 };
@@ -34,21 +36,10 @@ const THEMES: { id: ThemeSeed; name: string; color: string }[] = [
   { id: 'cyan', name: 'Бирюзовый', color: '#4FD8EB' },
 ];
 
-const ICONS: StepIcon[] = [
-  'gift',
-  'flame',
-  'snowflake',
-  'search',
-  'heart',
-  'key',
-  'coffee',
-  'sparkles',
-];
-
-const LAYOUT_OPTIONS: { value: StepLayout; label: string }[] = [
-  { value: 'standard', label: 'Обычный' },
-  { value: 'blur', label: 'Скретч-блюр' },
-  { value: 'codeLock', label: 'Пароль' },
+const LAYOUT_OPTIONS: { value: StepLayout; label: string; icon: string }[] = [
+  { value: 'standard', label: 'Обычный', icon: 'feed' },
+  { value: 'blur', label: 'Скретч-блюр', icon: 'blur_on' },
+  { value: 'codeLock', label: 'Пароль', icon: 'lock' },
 ];
 
 export const CreatorView: React.FC = () => {
@@ -56,7 +47,7 @@ export const CreatorView: React.FC = () => {
   const [printNote, setPrintNote] = useState<string>('Спрятать в холодильник');
   const [isScreenshotOpen, setIsScreenshotOpen] = useState<boolean>(false);
   const [isCopied, setIsCopied] = useState<boolean>(false);
-  const [activeMobileTab, setActiveMobileTab] = useState<'editor' | 'preview' | 'qr'>('editor');
+  const [mobileTab, setMobileTab] = useState<'editor' | 'preview' | 'qr'>('editor');
 
   // Compute encoded string and URL
   const encodedPayload = useMemo(() => encodeQuestStep(step), [step]);
@@ -107,76 +98,92 @@ export const CreatorView: React.FC = () => {
 
   return (
     <div className={styles.container} data-theme={step.theme}>
-      {/* Top Application Bar */}
+      {/* MD3 Small Top App Bar (strictly 64px, canonical branding) */}
       <header className={styles.topBar}>
         <div className={styles.brand}>
           <div className={styles.brandIcon}>
-            <Icon name="qr_code_2" size={24} />
+            <Icon name="cookie" size={24} />
           </div>
           <h1 className={styles.brandTitle}>QR crumbs</h1>
         </div>
 
-        {/* Desktop Header Actions */}
+        {/* Desktop actions (>= 768px) */}
         <div className={styles.desktopActions}>
-          <Button
-            variant="tonal"
-            icon={<Icon name="restart_alt" size={18} />}
+          <IconButton
+            icon="restart_alt"
+            variant="standard"
             onClick={handleResetForm}
             title="Сбросить форму"
+          />
+          <Button
+            variant="outlined"
+            icon="open_in_new"
+            onClick={() => window.open(viewerUrl, '_blank')}
           >
-            Сброс
+            Проверить
           </Button>
           <Button
             variant="filled"
-            icon={<Icon name="photo_camera" size={18} />}
+            icon="qr_code_scanner"
             onClick={() => setIsScreenshotOpen(true)}
           >
             Режим скриншота
           </Button>
         </div>
 
-        {/* Mobile Header Quick Reset Action */}
-        <button
-          type="button"
-          className={styles.mobileTopAction}
-          onClick={handleResetForm}
-          title="Сбросить форму"
-        >
-          <Icon name="restart_alt" size={22} />
-        </button>
+        {/* Mobile top action (< 768px: single restart button) */}
+        <div className={styles.mobileTopActions}>
+          <IconButton
+            icon="restart_alt"
+            variant="standard"
+            onClick={handleResetForm}
+            title="Сбросить"
+          />
+        </div>
       </header>
 
-      {/* Main Content Layout */}
+      {/* Mobile MD3 Primary Tabs (< 768px) */}
+      <div className={styles.mobileTabsWrapper}>
+        <Tabs
+          tabs={[
+            { id: 'editor', label: 'Конструктор', icon: 'edit' },
+            { id: 'preview', label: 'Превью', icon: 'visibility' },
+            { id: 'qr', label: 'QR-код', icon: 'qr_code_2' },
+          ]}
+          activeTab={mobileTab}
+          onChange={(tab) => setMobileTab(tab as 'editor' | 'preview' | 'qr')}
+        />
+      </div>
+
+      {/* Main Grid Content */}
       <main className={styles.mainContent}>
         {/* LEFT COLUMN: EDITOR */}
         <section
           className={`${styles.editorColumn} ${
-            activeMobileTab !== 'editor' ? styles.hideOnMobile : ''
+            mobileTab !== 'editor' ? styles.hideOnMobile : ''
           }`}
         >
-          {/* Section: Text Content */}
+          {/* Section: Content */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionIcon}>
-                <Icon name="auto_awesome" size={20} />
-              </span>
+              <Icon name="description" size={20} />
               <span>Текст и загадка</span>
             </div>
 
             <div className={styles.formGrid}>
               <TextField
                 label="Номер / Бейдж шага"
-                placeholder="например: Шаг 1 или Финал"
+                placeholder="Шаг 1, Финал..."
                 value={step.stepBadge || ''}
                 onChange={(e) =>
                   setStep((prev) => ({ ...prev, stepBadge: e.target.value }))
                 }
-                helperText="Короткая плашка в верхней части карточки"
+                helperText="Короткая надпись в верхней части карточки"
               />
 
               <TextField
                 label="Заголовок карточки"
-                placeholder="например: Первая зацепка 🎁"
+                placeholder="Первая зацепка 🎁"
                 value={step.title}
                 onChange={(e) =>
                   setStep((prev) => ({ ...prev, title: e.target.value }))
@@ -197,24 +204,22 @@ export const CreatorView: React.FC = () => {
 
               <TextField
                 label="Секретная наводка (под спойлером)"
-                placeholder="например: Посмотри в кастрюле на верхней полке"
+                placeholder="Посмотри в кастрюле на верхней полке"
                 value={step.secretHint || ''}
                 onChange={(e) =>
                   setStep((prev) => ({ ...prev, secretHint: e.target.value }))
                 }
                 multiline
                 rows={2}
-                helperText="Опционально. Появится раскрывающийся спойлер «Нужна наводка?»"
+                helperText="Опционально. Появится кнопка «Нужна наводка?»"
               />
             </div>
           </div>
 
-          {/* Section: Mechanics & Lock */}
+          {/* Section: Opening Mechanic */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionIcon}>
-                <Icon name="tune" size={20} />
-              </span>
+              <Icon name="lock" size={20} />
               <span>Механика открытия карточки</span>
             </div>
 
@@ -227,7 +232,7 @@ export const CreatorView: React.FC = () => {
 
               {step.layout === 'codeLock' && (
                 <TextField
-                  label="Секретный код / пароль разблокировки"
+                  label="Секретный код разблокировки"
                   placeholder="например: 1234 или ЧУДО"
                   value={step.unlockCode || ''}
                   onChange={(e) =>
@@ -240,17 +245,15 @@ export const CreatorView: React.FC = () => {
             </div>
           </div>
 
-          {/* Section: Theme & Icon */}
+          {/* Section: Themes & Material Symbols Icons */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionIcon}>
-                <Icon name="palette" size={20} />
-              </span>
-              <span>Оформление и тема</span>
+              <Icon name="palette" size={20} />
+              <span>Цветовой акцент и иконка</span>
             </div>
 
             <div className={styles.formGrid}>
-              <label className={styles.densityTitle}>Цветовой акцент MD3:</label>
+              <label className={styles.densityTitle}>Цветовая тема (MD3):</label>
               <div className={styles.swatchGrid}>
                 {THEMES.map((th) => {
                   const isSelected = step.theme === th.id;
@@ -265,34 +268,31 @@ export const CreatorView: React.FC = () => {
                       onClick={() => setStep((prev) => ({ ...prev, theme: th.id }))}
                       title={th.name}
                     >
-                      {isSelected && <Icon name="check" size={20} className={styles.swatchCheck} />}
+                      {isSelected && (
+                        <Icon name="check" size={20} className={styles.swatchCheck} />
+                      )}
                     </button>
                   );
                 })}
               </div>
 
               <label className={styles.densityTitle} style={{ marginTop: '12px' }}>
-                Иконка шага:
+                Иконка шага (Material Symbols):
               </label>
               <div className={styles.iconGrid}>
-                {ICONS.map((iconName) => {
-                  const isSelected = step.icon === iconName;
+                {ICON_OPTIONS.map((opt) => {
+                  const isSelected = step.icon === opt.id;
                   return (
                     <button
-                      key={iconName}
+                      key={opt.id}
                       type="button"
                       className={`${styles.iconBtn} ${
                         isSelected ? styles.iconBtnSelected : ''
                       }`}
-                      onClick={() =>
-                        setStep((prev) => ({ ...prev, icon: iconName }))
-                      }
-                      title={ICON_LABELS[iconName]}
+                      onClick={() => setStep((prev) => ({ ...prev, icon: opt.id }))}
+                      title={opt.label}
                     >
-                      <Icon name={iconName} size={24} />
-                      <span className={styles.iconBtnLabel}>
-                        {ICON_LABELS[iconName].split(' ')[0]}
-                      </span>
+                      <Icon name={opt.id} size={24} filled={isSelected} />
                     </button>
                   );
                 })}
@@ -300,18 +300,16 @@ export const CreatorView: React.FC = () => {
             </div>
           </div>
 
-          {/* Section: Print helper note (not in URL) */}
+          {/* Section: Technical Print Note */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <span className={styles.sectionIcon}>
-                <Icon name="push_pin" size={20} />
-              </span>
-              <span>Пометка для печати</span>
+              <Icon name="label" size={20} />
+              <span>Техническая пометка для печати</span>
             </div>
 
             <TextField
               label="Пометка для автора (не зашивается в ссылку)"
-              placeholder="например: Спрятать в микроволновку / QR #1"
+              placeholder="Спрятать в микроволновку / QR #1"
               value={printNote}
               onChange={(e) => setPrintNote(e.target.value)}
               helperText="Отобразится на карточке в режиме скриншота, чтобы не перепутать распечатки"
@@ -324,7 +322,7 @@ export const CreatorView: React.FC = () => {
           {/* Live Interactive Preview Card */}
           <div
             className={`${styles.stickySide} ${
-              activeMobileTab === 'qr' ? styles.hideOnMobile : ''
+              mobileTab === 'qr' ? styles.hideOnMobile : ''
             }`}
           >
             <QuestViewerCard step={step} isPreview />
@@ -333,7 +331,7 @@ export const CreatorView: React.FC = () => {
           {/* QR Code and Density Information Card */}
           <div
             className={`${styles.stickySide} ${
-              activeMobileTab === 'preview' ? styles.hideOnMobile : ''
+              mobileTab === 'preview' ? styles.hideOnMobile : ''
             }`}
           >
             {/* Density Widget */}
@@ -384,7 +382,7 @@ export const CreatorView: React.FC = () => {
 
               {isCopied && (
                 <div className={styles.copiedToast}>
-                  <Icon name="done_all" size={16} />
+                  <Icon name="check" size={16} />
                   <span>Ссылка скопирована в буфер обмена!</span>
                 </div>
               )}
@@ -392,7 +390,7 @@ export const CreatorView: React.FC = () => {
               <div className={styles.qrButtons}>
                 <Button
                   variant="filled"
-                  icon={<Icon name="photo_camera" size={18} />}
+                  icon="qr_code_scanner"
                   onClick={() => setIsScreenshotOpen(true)}
                 >
                   Режим скриншота
@@ -400,7 +398,7 @@ export const CreatorView: React.FC = () => {
 
                 <Button
                   variant="tonal"
-                  icon={<Icon name="content_copy" size={18} />}
+                  icon="content_copy"
                   onClick={handleCopyLink}
                 >
                   {isCopied ? 'Скопировано!' : 'Копировать'}
@@ -408,7 +406,7 @@ export const CreatorView: React.FC = () => {
 
                 <Button
                   variant="outlined"
-                  icon={<Icon name="open_in_new" size={18} />}
+                  icon="open_in_new"
                   onClick={() => window.open(viewerUrl, '_blank')}
                   title="Проверить в новой вкладке"
                 >
@@ -420,57 +418,14 @@ export const CreatorView: React.FC = () => {
         </section>
       </main>
 
-      {/* Floating Action Button (M3 FAB) on Mobile */}
-      <FAB
-        icon={<Icon name="photo_camera" size={24} />}
-        label="Скриншот"
-        onClick={() => setIsScreenshotOpen(true)}
+      {/* Canonical MD3 Extended FAB for Mobile */}
+      <Fab
+        icon="qr_code_scanner"
+        label="Скриншот QR"
+        fixedBottomRight
         className={styles.mobileFab}
+        onClick={() => setIsScreenshotOpen(true)}
       />
-
-      {/* M3 Mobile Bottom Navigation Bar */}
-      <nav className={styles.bottomNav} aria-label="Навигация по разделам">
-        <div className={styles.bottomNavItems}>
-          <button
-            type="button"
-            className={`${styles.navItem} ${
-              activeMobileTab === 'editor' ? styles.navItemActive : ''
-            }`}
-            onClick={() => setActiveMobileTab('editor')}
-          >
-            <div className={styles.navPill}>
-              <Icon name="edit_note" size={24} />
-            </div>
-            <span>Редактор</span>
-          </button>
-
-          <button
-            type="button"
-            className={`${styles.navItem} ${
-              activeMobileTab === 'preview' ? styles.navItemActive : ''
-            }`}
-            onClick={() => setActiveMobileTab('preview')}
-          >
-            <div className={styles.navPill}>
-              <Icon name="visibility" size={24} />
-            </div>
-            <span>Превью</span>
-          </button>
-
-          <button
-            type="button"
-            className={`${styles.navItem} ${
-              activeMobileTab === 'qr' ? styles.navItemActive : ''
-            }`}
-            onClick={() => setActiveMobileTab('qr')}
-          >
-            <div className={styles.navPill}>
-              <Icon name="qr_code_2" size={24} />
-            </div>
-            <span>QR-код</span>
-          </button>
-        </div>
-      </nav>
 
       {/* Screenshot Mode Fullscreen Overlay */}
       <ScreenshotModal

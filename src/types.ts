@@ -1,5 +1,32 @@
 export type ThemeSeed = 'violet' | 'rose' | 'amber' | 'emerald' | 'cyan';
-export type StepIcon = 'gift' | 'flame' | 'snowflake' | 'search' | 'heart' | 'key' | 'coffee' | 'sparkles';
+
+export type StepIcon =
+  | 'redeem'
+  | 'cake'
+  | 'favorite'
+  | 'celebration'
+  | 'local_fire_department'
+  | 'ac_unit'
+  | 'search'
+  | 'vpn_key'
+  | 'lock'
+  | 'coffee'
+  | 'restaurant'
+  | 'kitchen'
+  | 'weekend'
+  | 'bed'
+  | 'bathtub'
+  | 'checkroom'
+  | 'menu_book'
+  | 'potted_plant'
+  | 'pets'
+  | 'directions_car'
+  | 'extension'
+  | 'lightbulb'
+  | 'music_note'
+  | 'photo_camera'
+  | string;
+
 export type StepLayout = 'standard' | 'blur' | 'codeLock';
 
 export interface QuestStep {
@@ -8,7 +35,7 @@ export interface QuestStep {
   message: string;        // Основной текст загадки / наводки
   secretHint?: string;    // Опциональная подсказка под спойлером ("Сдаюсь, нужна наводка")
   theme: ThemeSeed;       // Цветовая схема MD3
-  icon: StepIcon;         // Главная иконка карточки
+  icon: StepIcon;         // Главная иконка карточки (Material Symbols)
   layout: StepLayout;     // Механика открытия карточки
   unlockCode?: string;    // Код разблокировки (только если layout === 'codeLock')
 }

@@ -1,0 +1,63 @@
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--md-sys-shape-corner-full);
+  border: 1px solid transparent;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  transition: all var(--md-sys-motion-duration-short) ease;
+  user-select: none;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.iconButton:hover {
+  background-color: rgba(var(--md-sys-color-primary-rgb), 0.08);
+  color: var(--md-sys-color-on-surface);
+}
+
+.iconButton:active {
+  background-color: rgba(var(--md-sys-color-primary-rgb), 0.12);
+}
+
+.iconButton:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.standard {
+  background-color: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.filled {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+.filled:hover {
+  filter: brightness(1.08);
+}
+
+.tonal {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.tonal:hover {
+  filter: brightness(1.08);
+}
+
+.outlined {
+  border-color: var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.outlined:hover {
+  border-color: var(--md-sys-color-outline);
+}

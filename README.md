@@ -1,20 +1,17 @@
-# QR crumbs (Serverless QR Quest — MD3 Dark)
+# QR crumbs (Strict MD3 Dark)
 
-Легковесное статическое SPA-приложение на React + TypeScript (Vite) для создания и прохождения домашнего интерактивного квеста по поиску подарка по QR-кодам.
+Легковесное статическое SPA-приложение на React + TypeScript (Vite) для создания и прохождения домашнего интерактивного квеста по поиску подарка по QR-кодам, выполненное строго по спецификации **Material Design 3** ([m3.material.io](https://m3.material.io)).
 
-Приложение полностью **serverless**: не требует бэкенда, баз данных или сторонних сервисов. Вся информация отдельного шага сериализуется в JSON, сжимается с помощью `lz-string` в URL-safe строку и кодируется в ссылку вида `#/v/<compressed_payload>`.
+Приложение полностью **serverless**: не требует бэкенда, баз данных или сторонних сервисов. Вся информация отдельного шага сериализуется в JSON, сжимается с помощью `lz-string` в URL-safe строку и зашивается в ссылку вида `#/v/<compressed_payload>`.
 
 ---
 
-## Возможности
+## Особенности и MD3-архитектура
 
-- **Material Design 3 (M3 Dark):** Строгое соответствие спецификации [m3.material.io](https://m3.material.io), Vanilla CSS Modules, CSS Custom Properties, 5 динамических цветовых палитр (`violet`, `rose`, `amber`, `emerald`, `cyan`).
-- **Иконки Material Symbols Rounded:** Официальный вариативный шрифт Google Material Symbols Rounded (`font-variation-settings: 'FILL' 0..1, 'wght' 400`).
-- **Адаптивный интерфейс для мобильных устройств:**
-  - Шапка (Top App Bar): компактная, не ломается на смартфонах.
-  - Floating Action Button (M3 FAB): быстрый запуск режима скриншота на мобильных устройствах.
-  - M3 Bottom Navigation Bar: удобная нижняя панель навигации (Редактор / Превью / QR-код) с pill-индикатором активного раздела.
-- **M3 Outlined Text Fields:** Корректная плавающая рамка (outline) без наложения заливки, с поддержкой плавающего лейбла (floating label) и вспомогательного текста.
+- **Strict Material Design 3 (Dark Theme):** Чистый CSS (Vanilla CSS Modules + Custom Properties), канонические elevation levels, строгие радиусы скругления (4px для инпутов, 12px для панелей, 16px для FAB, 28px для карточки квеста, 9999px для кнопок).
+- **Material Symbols Rounded:** Полный отказ от сторонних библиотек иконок в пользу вариативного шрифта Google Fonts с настройками `font-variation-settings`.
+- **MD3 Outlined Text Field:** Реализация с семантическим `<fieldset>` + `<legend>` для идеального разрыва рамки под плавающий лейбл без привязки к фону.
+- **MD3 Primary Tabs & Extended FAB на мобильных:** Адаптивное управление действиями на экранах < 768px.
 - **3 механики открытия подсказок (`layout`):**
   - **Обычный:** мгновенное отображение заголовка и текста подсказки.
   - **Скретч-блюр:** полупрозрачный слой с `backdrop-filter: blur(12px)` и плавным рассеиванием по тапу.
@@ -31,9 +28,9 @@
 
 - **Vite 6** + **React 18** + **TypeScript**
 - **Zero UI-Frameworks:** Без Tailwind, MUI, Bootstrap или CSS-in-JS.
+- **Material Symbols Rounded:** Google Fonts.
 - **lz-string:** сжатие и распаковка данных в URL.
 - **qrcode.react:** векторная генерация SVG QR-кодов.
-- **Material Symbols Rounded:** официальный шрифт иконок Google Material Design 3.
 
 ---
 

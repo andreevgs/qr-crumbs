@@ -5,18 +5,17 @@
   color: var(--md-sys-color-on-surface);
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
-/* M3 Small Top App Bar */
+/* MD3 Small Top App Bar (strictly 64px height, 16px padding) */
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 64px;
-  padding: 0 24px;
+  padding: 0 16px;
   background-color: var(--md-sys-color-surface);
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  border-bottom: 1px solid var(--md-sys-color-surface-container-highest);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -30,59 +29,55 @@
 }
 
 .brandIcon {
-  width: 36px;
-  height: 36px;
-  border-radius: var(--md-sys-shape-corner-medium);
-  background-color: var(--md-sys-color-primary-container);
-  color: var(--md-sys-color-on-primary-container);
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.brandTitle {
-  font-size: var(--md-sys-typescale-title-large);
-  font-weight: 600;
-  letter-spacing: 0;
-  color: var(--md-sys-color-on-surface);
-  white-space: nowrap;
-}
-
-/* Desktop Actions in Top Bar */
-.desktopActions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Mobile Icon Action in Top Bar */
-.mobileTopAction {
-  display: none;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
-  border-radius: var(--md-sys-shape-corner-full);
-  color: var(--md-sys-color-on-surface-variant);
-  background: transparent;
-  cursor: pointer;
-  transition: background-color var(--md-sys-motion-duration-short) ease;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
 }
 
-.mobileTopAction:hover {
-  background-color: rgba(230, 224, 233, var(--md-sys-state-hover-opacity));
+.brandTitle {
+  font-size: var(--md-sys-typescale-title-large);
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
+  letter-spacing: 0;
 }
 
-/* Main Content Layout Grid */
+/* Desktop actions in Top App Bar */
+.desktopActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mobile top actions (only restart icon) */
+.mobileTopActions {
+  display: none;
+}
+
+/* Mobile Primary Tabs (48px height) */
+.mobileTabsWrapper {
+  display: none;
+  position: sticky;
+  top: 64px;
+  z-index: 90;
+}
+
+/* Main Grid Layout */
 .mainContent {
   flex: 1;
-  max-width: 1200px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: 24px 16px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 32px;
+  gap: 24px;
   box-sizing: border-box;
 }
 
@@ -90,34 +85,30 @@
 .editorColumn {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 
-/* M3 Outlined Card */
+/* MD3 Card (radius 12px, padding 24px) */
 .sectionCard {
-  background-color: var(--md-sys-color-surface);
+  background-color: var(--md-sys-color-surface-container);
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-medium);
   padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   box-sizing: border-box;
 }
 
 .sectionHeader {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: var(--md-sys-typescale-title-medium);
-  font-weight: 600;
+  gap: 8px;
+  font-size: var(--md-sys-typescale-title-small);
+  font-weight: 500;
   color: var(--md-sys-color-on-surface);
-}
-
-.sectionIcon {
-  color: var(--md-sys-color-primary);
-  display: flex;
-  align-items: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--md-sys-color-surface-container-highest);
 }
 
 .formGrid {
@@ -143,63 +134,54 @@
   justify-content: center;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: transform var(--md-sys-motion-duration-short) ease,
-              box-shadow var(--md-sys-motion-duration-short) ease;
+  transition: transform var(--md-sys-motion-duration-short) ease;
   position: relative;
+  box-sizing: border-box;
 }
 
 .swatchBtn:hover {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 
 .swatchSelected {
   border-color: #FFFFFF;
-  box-shadow: 0 0 0 2px var(--md-sys-color-surface), 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .swatchCheck {
   color: #141218;
 }
 
-/* Icon Grid */
+/* Expanded Icon Grid (24 Material Symbols) */
 .iconGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 8px;
 }
 
 .iconBtn {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 12px 6px;
+  height: 48px;
   border-radius: var(--md-sys-shape-corner-small);
-  background-color: transparent;
+  background-color: var(--md-sys-color-surface-container-high);
   border: 1px solid var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-on-surface-variant);
   cursor: pointer;
   transition: all var(--md-sys-motion-duration-short) ease;
-  text-align: center;
+  box-sizing: border-box;
 }
 
 .iconBtn:hover {
-  background-color: rgba(230, 224, 233, var(--md-sys-state-hover-opacity));
-  border-color: var(--md-sys-color-outline);
+  background-color: var(--md-sys-color-surface-container-highest);
   color: var(--md-sys-color-on-surface);
+  border-color: var(--md-sys-color-outline);
 }
 
 .iconBtnSelected {
-  background-color: var(--md-sys-color-secondary-container) !important;
-  color: var(--md-sys-color-on-secondary-container) !important;
-  border-color: var(--md-sys-color-secondary-container) !important;
-  font-weight: 600;
-}
-
-.iconBtnLabel {
-  font-size: var(--md-sys-typescale-label-small);
-  line-height: 1.2;
+  background-color: var(--md-sys-color-primary-container) !important;
+  color: var(--md-sys-color-on-primary-container) !important;
+  border-color: var(--md-sys-color-primary) !important;
 }
 
 /* Right: Preview & QR Column */
@@ -212,15 +194,15 @@
 .stickySide {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
-/* Density Card */
+/* Density Widget */
 .densityCard {
-  background-color: var(--md-sys-color-surface);
+  background-color: var(--md-sys-color-surface-container);
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-medium);
-  padding: 18px 20px;
+  padding: 16px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -234,35 +216,34 @@
 
 .densityTitle {
   font-size: var(--md-sys-typescale-body-medium);
-  font-weight: 500;
   color: var(--md-sys-color-on-surface-variant);
 }
 
 .densityBadge {
   font-size: var(--md-sys-typescale-label-small);
-  padding: 3px 10px;
+  padding: 2px 10px;
   border-radius: var(--md-sys-shape-corner-full);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .densityGreen {
-  background-color: rgba(108, 219, 172, 0.2);
+  background-color: rgba(108, 219, 172, 0.16);
   color: #6CDBAC;
 }
 
 .densityAmber {
-  background-color: rgba(255, 185, 81, 0.2);
+  background-color: rgba(255, 185, 81, 0.16);
   color: #FFB951;
 }
 
 .densityRed {
-  background-color: rgba(242, 184, 181, 0.2);
+  background-color: rgba(242, 184, 181, 0.16);
   color: #F2B8B5;
 }
 
 .densityProgressBar {
   width: 100%;
-  height: 6px;
+  height: 4px;
   background-color: var(--md-sys-color-surface-container-highest);
   border-radius: var(--md-sys-shape-corner-full);
   overflow: hidden;
@@ -270,13 +251,13 @@
 
 .densityProgressFill {
   height: 100%;
-  transition: width 300ms ease, background-color 300ms ease;
+  transition: width 300ms ease;
   border-radius: var(--md-sys-shape-corner-full);
 }
 
-/* QR Side Card */
+/* QR Card in Side Column */
 .qrCard {
-  background-color: var(--md-sys-color-surface);
+  background-color: var(--md-sys-color-surface-container);
   border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-medium);
   padding: 24px;
@@ -290,130 +271,64 @@
 .qrContainer {
   background-color: #FFFFFF;
   padding: 16px;
-  border-radius: 16px;
+  border-radius: var(--md-sys-shape-corner-large);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--md-sys-elevation-1);
 }
 
 .qrButtons {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   width: 100%;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .copiedToast {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: var(--md-sys-typescale-label-medium);
+  gap: 4px;
+  font-size: var(--md-sys-typescale-label-small);
   color: #6CDBAC;
-  background-color: rgba(108, 219, 172, 0.15);
+  background-color: rgba(108, 219, 172, 0.12);
   padding: 4px 12px;
   border-radius: var(--md-sys-shape-corner-full);
   animation: fadeIn 200ms ease;
 }
 
-/* Floating Action Button for Mobile */
+/* Mobile Extended FAB */
 .mobileFab {
-  display: none;
-  position: fixed;
-  right: 16px;
-  bottom: 96px;
-  z-index: 95;
+  display: none !important;
 }
 
-/* M3 Mobile Bottom Navigation Bar */
-.bottomNav {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  background-color: var(--md-sys-color-surface-container);
-  border-top: 1px solid var(--md-sys-color-outline-variant);
-  z-index: 90;
-  padding: 0 16px;
-  box-sizing: border-box;
-}
-
-.bottomNavItems {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.navItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--md-sys-color-on-surface-variant);
-  font-size: var(--md-sys-typescale-label-medium);
-  font-weight: 500;
-  user-select: none;
-  padding: 6px 0;
-  min-width: 64px;
-  transition: color var(--md-sys-motion-duration-short) ease;
-}
-
-.navPill {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 32px;
-  border-radius: var(--md-sys-shape-corner-full);
-  transition: background-color var(--md-sys-motion-duration-short) ease,
-              color var(--md-sys-motion-duration-short) ease;
-}
-
-.navItemActive {
-  color: var(--md-sys-color-on-surface);
-  font-weight: 600;
-}
-
-.navItemActive .navPill {
-  background-color: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
-}
-
-/* Responsive Breakpoints */
-@media (max-width: 900px) {
-  .topBar {
-    padding: 0 16px;
-  }
-
+/* Responsive Media Queries */
+@media (max-width: 768px) {
   .desktopActions {
     display: none;
   }
 
-  .mobileTopAction {
-    display: inline-flex;
+  .mobileFab {
+    display: inline-flex !important;
+  }
+
+  .mobileTopActions {
+    display: flex;
+    align-items: center;
+  }
+
+  .mobileTabsWrapper {
+    display: block;
   }
 
   .mainContent {
     grid-template-columns: 1fr;
-    padding: 16px 16px 110px 16px;
-    gap: 20px;
+    padding: 16px 12px 90px 12px; /* space for FAB at bottom */
+    gap: 16px;
   }
 
-  .mobileFab {
-    display: inline-flex;
-  }
-
-  .bottomNav {
-    display: flex;
+  .iconGrid {
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .hideOnMobile {

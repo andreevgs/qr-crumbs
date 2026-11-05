@@ -53,7 +53,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
       setIsShaking(true);
       setTimeout(() => {
         setIsShaking(false);
-      }, 450);
+      }, 400);
     }
   };
 
@@ -72,19 +72,18 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
             <Button
               variant="text"
               onClick={handleResetPreview}
-              icon={<Icon name="restart_alt" size={16} />}
-              style={{ height: '32px', padding: '0 8px', fontSize: '12px' }}
+              icon="restart_alt"
+              style={{ height: '32px', padding: '0 8px', fontSize: '13px' }}
             >
               Сброс
             </Button>
           </div>
         )}
 
-        {/* Header Icon with Glow */}
+        {/* Clean MD3 Header Icon */}
         <div className={styles.headerWrapper}>
-          <div className={styles.glow} />
           <div className={styles.iconSquircle}>
-            <Icon name={step.icon} size={36} />
+            <Icon name={step.icon} size={36} filled />
           </div>
 
           {step.stepBadge && step.stepBadge.trim().length > 0 && (
@@ -150,7 +149,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
 
                   <form className={styles.lockForm} onSubmit={handleUnlock}>
                     <TextField
-                      placeholder="Введи секретный код"
+                      placeholder="Введи секретное слово или цифры"
                       value={codeInput}
                       onChange={(e) => {
                         setCodeInput(e.target.value);
@@ -162,7 +161,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
                     <Button
                       type="submit"
                       variant="filled"
-                      icon={<Icon name="lock_open" size={18} />}
+                      icon="lock_open"
                       fullWidth
                     >
                       Разблокировать
@@ -178,7 +177,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
           )}
         </div>
 
-        {/* SECRET HINT ACCORDION (Only rendered if configured and main riddle is revealed) */}
+        {/* SECRET HINT ACCORDION */}
         {step.secretHint && step.secretHint.trim().length > 0 && isRevealed && (
           <div className={styles.hintSection}>
             <button
@@ -191,10 +190,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
                 <Icon name="help" size={18} />
                 <span>Нужна наводка?</span>
               </span>
-              <Icon
-                name={isHintOpen ? 'expand_less' : 'expand_more'}
-                size={20}
-              />
+              <Icon name={isHintOpen ? 'expand_less' : 'expand_more'} size={20} />
             </button>
 
             {isHintOpen && (

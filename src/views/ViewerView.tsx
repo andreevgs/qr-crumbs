@@ -31,7 +31,7 @@ export const ViewerView: React.FC<ViewerViewProps> = ({ payload, onNavigate }) =
         ) : (
           <div className={styles.errorCard}>
             <div className={styles.errorIconWrapper}>
-              <Icon name="error" size={40} />
+              <Icon name="error" size={36} filled />
             </div>
             <h1 className={styles.errorTitle}>Подсказка не найдена</h1>
             <p className={styles.errorDescription}>
@@ -40,7 +40,7 @@ export const ViewerView: React.FC<ViewerViewProps> = ({ payload, onNavigate }) =
             </p>
             <Button
               variant="filled"
-              icon={<Icon name="add" size={20} />}
+              icon="add_circle"
               onClick={() => onNavigate('#/create')}
             >
               Конструктор квеста
