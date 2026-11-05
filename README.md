@@ -1,57 +1,49 @@
-# QR crumbs (Strict MD3 Dark)
+# QR crumbs
 
-Легковесное статическое SPA-приложение на React + TypeScript (Vite) для создания и прохождения домашнего интерактивного квеста по поиску подарка по QR-кодам, выполненное строго по спецификации **Material Design 3** ([m3.material.io](https://m3.material.io)).
+A lightweight, serverless single-page application built with React, TypeScript, and Vite for creating and playing interactive gift-hunting QR quests, following the [Material Design 3](https://m3.material.io) specification.
 
-Приложение полностью **serverless**: не требует бэкенда, баз данных или сторонних сервисов. Вся информация отдельного шага сериализуется в JSON, сжимается с помощью `lz-string` в URL-safe строку и зашивается в ссылку вида `#/v/<compressed_payload>`.
+Everything runs entirely in the browser without backends, databases, or external network requests. Each quest step serializes into JSON, compresses into a URL-safe string with `lz-string`, and encodes directly into the URL hash (`#/v/<payload>`).
 
----
+## Features
 
-## Особенности и MD3-архитектура
+- Complies with Material Design 3 Dark Theme tokens, elevation levels, and shape scales without external UI frameworks
+- Uses official variable Material Symbols Rounded from Google Fonts via `font-variation-settings`
+- Outlined Text Fields with pure CSS floating labels and seamless surface backgrounds
+- Three reveal mechanics: immediate text, tap-to-clear scratch blur, and codeword/PIN lock with shake animation
+- Optional spoiler accordion for secondary hints accessible once the main riddle is opened
+- Two-pane desktop layout with an auto-incrementing step creator and a sticky preview sidebar
+- Real-time phone-podium preview matching the exact player experience
+- Fullscreen screenshot overlay with high-contrast quiet zone and author placement notes
+- Persistent link length and QR readability density indicator
+- Mobile MD3 Bottom Navigation Bar with pill indicators for switching between editor, preview, and QR code
+- Static deployment ready for GitHub Pages or any sub-path via relative asset paths
 
-- **Strict Material Design 3 (Dark Theme):** Чистый CSS (Vanilla CSS Modules + Custom Properties), канонические elevation levels, строгие радиусы скругления (4px для инпутов, 12px для панелей, 16px для FAB, 28px для карточки квеста, 9999px для кнопок).
-- **Material Symbols Rounded:** Полный отказ от сторонних библиотек иконок в пользу вариативного шрифта Google Fonts с настройками `font-variation-settings`.
-- **MD3 Outlined Text Field:** Реализация с семантическим `<fieldset>` + `<legend>` для идеального разрыва рамки под плавающий лейбл без привязки к фону.
-- **MD3 Primary Tabs & Extended FAB на мобильных:** Адаптивное управление действиями на экранах < 768px.
-- **3 механики открытия подсказок (`layout`):**
-  - **Обычный:** мгновенное отображение заголовка и текста подсказки.
-  - **Скретч-блюр:** полупрозрачный слой с `backdrop-filter: blur(12px)` и плавным рассеиванием по тапу.
-  - **Кодовый замок:** поле ввода секретного слова/числа с регистронезависимой проверкой, анимацией тряски при ошибке (`shake`) и плавным открытием при успехе.
-- **Секретная наводка (спойлер-аккордеон):** «Нужна наводка?», доступна после открытия основной загадки.
-- **Индикатор плотности QR-кода:** расчет длины URL и читаемости кода (зеленый / желтый / красный статус).
-- **Живое интерактивное превью (Live Preview):** тестирование разблокировки прямо в окне создания.
-- **Режим создания скриншота (Screenshot Mode):** полноэкранный оверлей с контрастной подложкой, тихой зоной, пометкой для печати (`printNote`) и переключателем размера (S, M, L).
-- **Полная автономность:** `vite.config.ts` настроен с `base: './'`, приложение можно выложить на GitHub Pages в любой подкаталог без дополнительной настройки серверов.
+## Tech Stack
 
----
+- React 18, TypeScript, Vite 6
+- Vanilla CSS Modules and CSS Custom Properties
+- Google Fonts (Roboto and Material Symbols Rounded)
+- `lz-string` for URL compression and decompression
+- `qrcode.react` for vector SVG QR code generation
 
-## Стек технологий
+## Getting Started
 
-- **Vite 6** + **React 18** + **TypeScript**
-- **Zero UI-Frameworks:** Без Tailwind, MUI, Bootstrap или CSS-in-JS.
-- **Material Symbols Rounded:** Google Fonts.
-- **lz-string:** сжатие и распаковка данных в URL.
-- **qrcode.react:** векторная генерация SVG QR-кодов.
-
----
-
-## Запуск проекта
-
-### Установка зависимостей
+Install dependencies:
 ```bash
 npm install
 ```
 
-### Запуск в режиме разработки
+Start development server:
 ```bash
 npm run dev
 ```
 
-### Сборка production-бандла
+Build for production:
 ```bash
 npm run build
 ```
 
-### Локальный предпросмотр сборки
+Preview production build:
 ```bash
 npm run preview
 ```
