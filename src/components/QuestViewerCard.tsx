@@ -8,12 +8,12 @@ import styles from './QuestViewerCard.module.css';
 
 export interface QuestViewerCardProps {
   step: QuestStep;
-  isPreview?: boolean;
+  resetKey?: number;
 }
 
 export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
   step,
-  isPreview = false,
+  resetKey,
 }) => {
   const [isBlurred, setIsBlurred] = useState<boolean>(step.layout === 'blur');
   const [isUnlocked, setIsUnlocked] = useState<boolean>(step.layout !== 'codeLock');
@@ -22,22 +22,14 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
   const [isShaking, setIsShaking] = useState<boolean>(false);
   const [isHintOpen, setIsHintOpen] = useState<boolean>(false);
 
-  // Sync state when step layout or unlockCode changes
+  // Sync state when step layout, unlockCode, or external resetKey changes
   useEffect(() => {
     setIsBlurred(step.layout === 'blur');
     setIsUnlocked(step.layout !== 'codeLock');
     setCodeInput('');
     setErrorMessage('');
     setIsHintOpen(false);
-  }, [step.layout, step.unlockCode]);
-
-  const handleResetPreview = () => {
-    setIsBlurred(step.layout === 'blur');
-    setIsUnlocked(step.layout !== 'codeLock');
-    setCodeInput('');
-    setErrorMessage('');
-    setIsHintOpen(false);
-  };
+  }, [step.layout, step.unlockCode, resetKey]);
 
   const handleUnlock = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -65,21 +57,6 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
   return (
     <div className={styles.cardContainer} data-theme={step.theme}>
       <div className={styles.cardInner}>
-        {/* Preview badge indicator */}
-        {isPreview && (
-          <div className={styles.previewBadgeBar}>
-            <span className={styles.previewLabel}>Интерактивное превью</span>
-            <Button
-              variant="text"
-              onClick={handleResetPreview}
-              icon="restart_alt"
-              style={{ height: '32px', padding: '0 8px', fontSize: '13px' }}
-            >
-              Сброс
-            </Button>
-          </div>
-        )}
-
         {/* Clean MD3 Header Icon */}
         <div className={styles.headerWrapper}>
           <div className={styles.iconSquircle}>
@@ -156,7 +133,6 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
                         if (errorMessage) setErrorMessage('');
                       }}
                       error={errorMessage}
-                      autoFocus={!isPreview}
                     />
                     <Button
                       type="submit"

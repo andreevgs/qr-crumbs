@@ -1,0 +1,131 @@
+.editorColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* MD3 Filled Card: No borders, 16px corner, 24px padding */
+.sectionCard {
+  background-color: var(--md-sys-color-surface-container-low);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+/* Clean MD3 Title Medium Header: No border-bottom */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--md-sys-typescale-title-medium);
+  font-weight: 500;
+  line-height: 24px;
+  color: var(--md-sys-color-on-surface);
+  padding: 0;
+}
+
+.sectionHeaderIcon {
+  color: var(--md-sys-color-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* Compact group: Badge and Title in one row on desktop */
+.badgeAndTitleRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  align-items: start;
+  min-width: 0;
+}
+
+/* Theme Swatches */
+.swatchGrid {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.swatchBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--md-sys-shape-corner-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform var(--md-sys-motion-duration-short) ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.swatchBtn:hover {
+  transform: scale(1.06);
+}
+
+.swatchSelected {
+  border-color: #FFFFFF;
+}
+
+.swatchCheck {
+  color: #141218;
+}
+
+/* Adaptive Icon Grid */
+.iconGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
+  gap: 8px;
+}
+
+.iconBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-surface-container-high);
+  border: none;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: all var(--md-sys-motion-duration-short) ease;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.iconBtn:hover {
+  background-color: var(--md-sys-color-surface-container-highest);
+  color: var(--md-sys-color-on-surface);
+}
+
+.iconBtnSelected {
+  background-color: var(--md-sys-color-primary-container) !important;
+  color: var(--md-sys-color-on-primary-container) !important;
+}
+
+.densityTitle {
+  font-size: var(--md-sys-typescale-body-medium);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+@media (max-width: 600px) {
+  .badgeAndTitleRow {
+    grid-template-columns: 1fr;
+  }
+}

@@ -8,6 +8,7 @@
   background-color: transparent;
   padding: 0;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .segment {
@@ -31,6 +32,7 @@
   user-select: none;
   white-space: nowrap;
   box-sizing: border-box;
+  min-width: 0;
 }
 
 .segment:last-child {
@@ -55,4 +57,13 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .segment {
+    padding: 0 6px;
+    font-size: 13px;
+    gap: 4px;
+  }
 }

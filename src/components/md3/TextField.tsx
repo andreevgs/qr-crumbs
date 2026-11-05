@@ -88,19 +88,6 @@ export const TextField: React.FC<TextFieldProps> = ({
             autoFocus={autoFocus}
           />
         )}
-
-        {/* Semantic Fieldset with Notch Legend */}
-        <fieldset className={styles.outlineFieldset} aria-hidden="true">
-          {label && (
-            <legend
-              className={`${styles.outlineLegend} ${
-                isFloated ? styles.outlineLegendOpen : ''
-              }`}
-            >
-              <span>{label}</span>
-            </legend>
-          )}
-        </fieldset>
       </div>
 
       {(errorMessage || helperText) && (

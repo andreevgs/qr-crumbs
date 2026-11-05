@@ -127,6 +127,7 @@
 
 /* CodeLock Layout */
 .lockBox {
+  --textfield-bg: var(--md-sys-color-surface-container-high);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -209,21 +210,4 @@
   white-space: pre-wrap;
   border-top: none;
   animation: fadeIn 200ms ease;
-}
-
-.previewBadgeBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 16px;
-  padding-bottom: 4px;
-}
-
-.previewLabel {
-  font-size: var(--md-sys-typescale-label-small);
-  color: var(--md-sys-color-on-surface-variant);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 500;
 }

@@ -1,0 +1,122 @@
+.previewColumn {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.desktopPreviewSwitch {
+  width: 100%;
+}
+
+/* Preview Wrapper Card: MD3 Filled Card with header and podium */
+.previewWrapperCard {
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.previewTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--md-sys-typescale-title-medium);
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.previewHeaderIcon {
+  color: var(--md-sys-color-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Smartphone screen podium */
+.phonePodium {
+  background-color: var(--md-sys-color-background);
+  border-radius: 24px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* QR Card in Side Column */
+.qrCard {
+  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.qrContainer {
+  background-color: #FFFFFF;
+  padding: 16px;
+  border-radius: var(--md-sys-shape-corner-large);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrButtons {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.copiedToast {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--md-sys-typescale-label-small);
+  color: #6CDBAC;
+  background-color: rgba(108, 219, 172, 0.12);
+  padding: 4px 12px;
+  border-radius: var(--md-sys-shape-corner-full);
+  animation: fadeIn 200ms ease;
+}
+
+/* Desktop & Mobile visibility helpers */
+@media (min-width: 769px) {
+  .hideOnDesktop {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .previewColumn {
+    position: static;
+  }
+
+  .desktopPreviewSwitch {
+    display: none;
+  }
+
+  .hideOnMobile {
+    display: none !important;
+  }
+}

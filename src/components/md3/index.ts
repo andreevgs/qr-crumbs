@@ -7,3 +7,4 @@ export * from './SegmentedButton';
 export * from './Badge';
 export * from './Icon';
 export * from './Tabs';
+export * from './NavigationBar';

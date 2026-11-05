@@ -1,0 +1,106 @@
+.topBar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  background-color: var(--md-sys-color-surface);
+  border-bottom: 1px solid var(--md-sys-color-surface-container-highest);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brandIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  flex-shrink: 0;
+}
+
+.brandTitle {
+  font-size: var(--md-sys-typescale-title-large);
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  margin: 0;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* Center Metric: Persistent URL Metric */
+.centerMetric {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--md-sys-color-surface-container);
+  padding: 4px 12px;
+  border-radius: var(--md-sys-shape-corner-full);
+  font-size: var(--md-sys-typescale-label-small);
+  color: var(--md-sys-color-on-surface-variant);
+  user-select: none;
+}
+
+.metricDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Desktop actions (>= 768px) */
+.desktopActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Mobile top actions (< 768px) */
+.mobileActions {
+  display: none;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Thin 3px progress bar under the top bar */
+.topProgressBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+.topProgressFill {
+  height: 100%;
+  transition: width 300ms ease, background-color 300ms ease;
+}
+
+@media (max-width: 768px) {
+  .centerMetric {
+    display: none;
+  }
+
+  .desktopActions {
+    display: none;
+  }
+
+  .mobileActions {
+    display: flex;
+  }
+}
