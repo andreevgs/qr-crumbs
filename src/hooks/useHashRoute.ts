@@ -5,10 +5,21 @@ export type AppRoute =
   | { type: 'viewer'; payload: string };
 
 function parseHash(hash: string): AppRoute {
-  const cleanHash = hash.startsWith('#') ? hash.slice(1) : hash;
+  // Strip leading '#' if present
+  let clean = hash.startsWith('#') ? hash.slice(1) : hash;
+  if (clean.startsWith('/')) {
+    clean = clean.slice(1);
+  }
 
-  if (cleanHash.startsWith('/v/')) {
-    const payload = cleanHash.slice(3); // after '/v/'
+  if (clean.startsWith('v/')) {
+    let payload = clean.slice(2);
+    const queryIdx = payload.indexOf('?');
+    if (queryIdx !== -1) {
+      payload = payload.slice(0, queryIdx);
+    }
+    if (payload.endsWith('/')) {
+      payload = payload.slice(0, -1);
+    }
     if (payload.length > 0) {
       return { type: 'viewer', payload };
     }
