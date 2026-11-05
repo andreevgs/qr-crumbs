@@ -15,7 +15,7 @@
   text-align: center;
   position: relative;
   background-color: var(--md-sys-color-surface-container);
-  border: 1px solid var(--md-sys-color-outline-variant);
+  border: none;
   border-radius: var(--md-sys-shape-corner-extra-large);
   box-shadow: var(--md-sys-elevation-1);
   overflow: hidden;
@@ -70,8 +70,8 @@
   word-break: break-word;
   padding: 20px;
   background-color: var(--md-sys-color-surface-container-high);
-  border-radius: var(--md-sys-shape-corner-medium);
-  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-large);
+  border: none;
   text-align: left;
 }
 
@@ -79,7 +79,7 @@
 .blurWrapper {
   position: relative;
   width: 100%;
-  border-radius: var(--md-sys-shape-corner-medium);
+  border-radius: var(--md-sys-shape-corner-large);
   overflow: hidden;
 }
 
@@ -106,8 +106,8 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   cursor: pointer;
-  border-radius: var(--md-sys-shape-corner-medium);
-  border: 1px dashed var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-large);
+  border: 1px dashed var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-primary);
   font-weight: 500;
   padding: 24px;
@@ -134,8 +134,8 @@
   width: 100%;
   padding: 24px 16px;
   background-color: var(--md-sys-color-surface-container-high);
-  border-radius: var(--md-sys-shape-corner-medium);
-  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-large);
+  border: none;
   box-sizing: border-box;
 }
 
@@ -168,9 +168,9 @@
 .hintSection {
   width: 100%;
   margin-top: 8px;
-  border-radius: var(--md-sys-shape-corner-small);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  background-color: var(--md-sys-color-surface-container-low);
+  border-radius: var(--md-sys-shape-corner-medium);
+  border: none;
+  background-color: var(--md-sys-color-surface-container-high);
   overflow: hidden;
   transition: all var(--md-sys-motion-duration-short) ease;
 }
@@ -180,7 +180,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 16px;
+  padding: 14px 16px;
   background: transparent;
   color: var(--md-sys-color-primary);
   font-size: var(--md-sys-typescale-label-large);
@@ -201,15 +201,14 @@
 }
 
 .hintBody {
-  padding: 0 16px 14px 16px;
+  padding: 4px 16px 16px 16px;
   font-size: var(--md-sys-typescale-body-medium);
   color: var(--md-sys-color-on-surface-variant);
   text-align: left;
   line-height: 20px;
   white-space: pre-wrap;
-  border-top: 1px solid var(--md-sys-color-outline-variant);
+  border-top: none;
   animation: fadeIn 200ms ease;
-  margin-top: 8px;
 }
 
 .previewBadgeBar {
@@ -218,8 +217,7 @@
   align-items: center;
   width: 100%;
   margin-bottom: 16px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  padding-bottom: 4px;
 }
 
 .previewLabel {

@@ -73,7 +73,6 @@
 .fieldWrapper:focus-within .outlineFieldset {
   border-width: 2px;
   border-color: var(--md-sys-color-primary);
-  margin: -1px;
 }
 
 /* Error states */

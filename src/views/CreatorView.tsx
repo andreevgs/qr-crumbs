@@ -48,6 +48,7 @@ export const CreatorView: React.FC = () => {
   const [isScreenshotOpen, setIsScreenshotOpen] = useState<boolean>(false);
   const [isCopied, setIsCopied] = useState<boolean>(false);
   const [mobileTab, setMobileTab] = useState<'editor' | 'preview' | 'qr'>('editor');
+  const [desktopPaneTab, setDesktopPaneTab] = useState<'preview' | 'qr'>('preview');
 
   // Compute encoded string and URL
   const encodedPayload = useMemo(() => encodeQuestStep(step), [step]);
@@ -155,7 +156,7 @@ export const CreatorView: React.FC = () => {
         />
       </div>
 
-      {/* Main Grid Content */}
+      {/* Main Canonical Two-Pane Grid Content */}
       <main className={styles.mainContent}>
         {/* LEFT COLUMN: EDITOR */}
         <section
@@ -166,29 +167,33 @@ export const CreatorView: React.FC = () => {
           {/* Section: Content */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <Icon name="description" size={20} />
+              <span className={styles.sectionHeaderIcon}>
+                <Icon name="description" size={20} />
+              </span>
               <span>Текст и загадка</span>
             </div>
 
             <div className={styles.formGrid}>
-              <TextField
-                label="Номер / Бейдж шага"
-                placeholder="Шаг 1, Финал..."
-                value={step.stepBadge || ''}
-                onChange={(e) =>
-                  setStep((prev) => ({ ...prev, stepBadge: e.target.value }))
-                }
-                helperText="Короткая надпись в верхней части карточки"
-              />
+              <div className={styles.badgeAndTitleRow}>
+                <TextField
+                  label="Бейдж шага"
+                  placeholder="Шаг 1, Финал..."
+                  value={step.stepBadge || ''}
+                  onChange={(e) =>
+                    setStep((prev) => ({ ...prev, stepBadge: e.target.value }))
+                  }
+                  helperText="Например: Шаг 1"
+                />
 
-              <TextField
-                label="Заголовок карточки"
-                placeholder="Первая зацепка 🎁"
-                value={step.title}
-                onChange={(e) =>
-                  setStep((prev) => ({ ...prev, title: e.target.value }))
-                }
-              />
+                <TextField
+                  label="Заголовок карточки"
+                  placeholder="Первая зацепка 🎁"
+                  value={step.title}
+                  onChange={(e) =>
+                    setStep((prev) => ({ ...prev, title: e.target.value }))
+                  }
+                />
+              </div>
 
               <TextField
                 label="Основной текст подсказки / загадки"
@@ -219,7 +224,9 @@ export const CreatorView: React.FC = () => {
           {/* Section: Opening Mechanic */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <Icon name="lock" size={20} />
+              <span className={styles.sectionHeaderIcon}>
+                <Icon name="lock" size={20} />
+              </span>
               <span>Механика открытия карточки</span>
             </div>
 
@@ -248,7 +255,9 @@ export const CreatorView: React.FC = () => {
           {/* Section: Themes & Material Symbols Icons */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <Icon name="palette" size={20} />
+              <span className={styles.sectionHeaderIcon}>
+                <Icon name="palette" size={20} />
+              </span>
               <span>Цветовой акцент и иконка</span>
             </div>
 
@@ -303,7 +312,9 @@ export const CreatorView: React.FC = () => {
           {/* Section: Technical Print Note */}
           <div className={styles.sectionCard}>
             <div className={styles.sectionHeader}>
-              <Icon name="label" size={20} />
+              <span className={styles.sectionHeaderIcon}>
+                <Icon name="label" size={20} />
+              </span>
               <span>Техническая пометка для печати</span>
             </div>
 
@@ -317,13 +328,29 @@ export const CreatorView: React.FC = () => {
           </div>
         </section>
 
-        {/* RIGHT COLUMN: PREVIEW & QR */}
-        <section className={styles.previewColumn}>
+        {/* RIGHT COLUMN: PREVIEW & QR (Sticky Sidebar) */}
+        <section
+          className={`${styles.previewColumn} ${
+            mobileTab === 'editor' ? styles.hideOnMobile : ''
+          }`}
+        >
+          {/* Desktop compact switch: Live Preview vs QR Code */}
+          <div className={styles.desktopPreviewSwitch}>
+            <SegmentedButton
+              options={[
+                { value: 'preview', label: 'Живое превью', icon: 'visibility' },
+                { value: 'qr', label: 'QR-код для печати', icon: 'qr_code_2' },
+              ]}
+              value={desktopPaneTab}
+              onChange={(val) => setDesktopPaneTab(val as 'preview' | 'qr')}
+            />
+          </div>
+
           {/* Live Interactive Preview Card */}
           <div
             className={`${styles.stickySide} ${
-              mobileTab === 'qr' ? styles.hideOnMobile : ''
-            }`}
+              mobileTab !== 'preview' ? styles.hideOnMobile : ''
+            } ${desktopPaneTab !== 'preview' ? styles.hideOnDesktop : ''}`}
           >
             <QuestViewerCard step={step} isPreview />
           </div>
@@ -331,8 +358,8 @@ export const CreatorView: React.FC = () => {
           {/* QR Code and Density Information Card */}
           <div
             className={`${styles.stickySide} ${
-              mobileTab === 'preview' ? styles.hideOnMobile : ''
-            }`}
+              mobileTab !== 'qr' ? styles.hideOnMobile : ''
+            } ${desktopPaneTab !== 'qr' ? styles.hideOnDesktop : ''}`}
           >
             {/* Density Widget */}
             <div className={styles.densityCard}>

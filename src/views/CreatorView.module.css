@@ -68,16 +68,17 @@
   z-index: 90;
 }
 
-/* Main Grid Layout */
+/* Canonical MD3 Two-Pane Grid Layout */
 .mainContent {
   flex: 1;
-  max-width: 1280px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 24px 16px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) 420px;
   gap: 24px;
+  align-items: start;
   box-sizing: border-box;
 }
 
@@ -88,11 +89,11 @@
   gap: 16px;
 }
 
-/* MD3 Card (radius 12px, padding 24px) */
+/* MD3 Filled Card: No borders, 16px corner, 24px padding */
 .sectionCard {
-  background-color: var(--md-sys-color-surface-container);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-surface-container-low);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -100,21 +101,36 @@
   box-sizing: border-box;
 }
 
+/* Clean MD3 Title Medium Header: No border-bottom */
 .sectionHeader {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: var(--md-sys-typescale-title-small);
+  font-size: var(--md-sys-typescale-title-medium);
   font-weight: 500;
+  line-height: 24px;
   color: var(--md-sys-color-on-surface);
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--md-sys-color-surface-container-highest);
+  padding: 0;
+}
+
+.sectionHeaderIcon {
+  color: var(--md-sys-color-primary);
+  display: inline-flex;
+  align-items: center;
 }
 
 .formGrid {
   display: flex;
   flex-direction: column;
   gap: 16px;
+}
+
+/* Compact group: Badge and Title in one row on desktop */
+.badgeAndTitleRow {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  align-items: start;
 }
 
 /* Theme Swatches */
@@ -151,10 +167,10 @@
   color: #141218;
 }
 
-/* Expanded Icon Grid (24 Material Symbols) */
+/* Adaptive Icon Grid */
 .iconGrid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(48px, 1fr));
   gap: 8px;
 }
 
@@ -162,50 +178,59 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
-  border-radius: var(--md-sys-shape-corner-small);
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: var(--md-sys-shape-corner-medium);
   background-color: var(--md-sys-color-surface-container-high);
-  border: 1px solid var(--md-sys-color-outline-variant);
+  border: none;
   color: var(--md-sys-color-on-surface-variant);
   cursor: pointer;
   transition: all var(--md-sys-motion-duration-short) ease;
   box-sizing: border-box;
+  padding: 0;
 }
 
 .iconBtn:hover {
   background-color: var(--md-sys-color-surface-container-highest);
   color: var(--md-sys-color-on-surface);
-  border-color: var(--md-sys-color-outline);
 }
 
 .iconBtnSelected {
   background-color: var(--md-sys-color-primary-container) !important;
   color: var(--md-sys-color-on-primary-container) !important;
-  border-color: var(--md-sys-color-primary) !important;
 }
 
-/* Right: Preview & QR Column */
+/* Right: True Sticky Sidebar for Desktop */
 .previewColumn {
+  position: sticky;
+  top: 88px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+}
+
+/* Desktop switch bar for Preview vs QR */
+.desktopPreviewSwitch {
+  width: 100%;
 }
 
 .stickySide {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
 }
 
-/* Density Widget */
+/* Density Widget: MD3 Filled Card without borders */
 .densityCard {
-  background-color: var(--md-sys-color-surface-container);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-surface-container-low);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
   padding: 16px 24px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  box-sizing: border-box;
 }
 
 .densityRow {
@@ -255,17 +280,18 @@
   border-radius: var(--md-sys-shape-corner-full);
 }
 
-/* QR Card in Side Column */
+/* QR Card in Side Column: MD3 Filled Card without borders */
 .qrCard {
-  background-color: var(--md-sys-color-surface-container);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-medium);
+  background-color: var(--md-sys-color-surface-container-low);
+  border: none;
+  border-radius: var(--md-sys-shape-corner-large);
   padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .qrContainer {
@@ -302,9 +328,29 @@
   display: none !important;
 }
 
-/* Responsive Media Queries */
+/* Desktop Hide Helper */
+@media (min-width: 769px) {
+  .hideOnDesktop {
+    display: none !important;
+  }
+}
+
+/* Tablet Layout (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .mainContent {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 16px;
+    padding: 20px 12px;
+  }
+}
+
+/* Mobile Layout (<= 768px) */
 @media (max-width: 768px) {
   .desktopActions {
+    display: none;
+  }
+
+  .desktopPreviewSwitch {
     display: none;
   }
 
@@ -327,8 +373,12 @@
     gap: 16px;
   }
 
-  .iconGrid {
-    grid-template-columns: repeat(4, 1fr);
+  .badgeAndTitleRow {
+    grid-template-columns: 1fr;
+  }
+
+  .previewColumn {
+    position: static;
   }
 
   .hideOnMobile {

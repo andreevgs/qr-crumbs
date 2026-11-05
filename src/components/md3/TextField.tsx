@@ -39,7 +39,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   const isError = Boolean(error);
   const errorMessage = typeof error === 'string' ? error : undefined;
   const hasValue = String(value).length > 0;
-  const isFloated = isFocused || hasValue || Boolean(placeholder);
+  const isFloated = isFocused || hasValue;
 
   return (
     <div className={`${styles.container} ${className}`}>
