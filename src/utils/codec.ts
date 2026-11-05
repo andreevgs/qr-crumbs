@@ -123,6 +123,8 @@ export function decodeQuestStep(encoded: string): QuestStep | null {
  * Builds the full viewer URL for a given compressed payload.
  */
 export function buildViewerUrl(compressedPayload: string): string {
-  const base = `${window.location.origin}${window.location.pathname}`;
-  return `${base}#/v/${compressedPayload}`;
+  const pathname = window.location.pathname.endsWith('/')
+    ? window.location.pathname
+    : `${window.location.pathname}/`;
+  return `${window.location.origin}${pathname}#/v/${compressedPayload}`;
 }

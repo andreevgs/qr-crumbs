@@ -47,3 +47,16 @@ Preview production build:
 ```bash
 npm run preview
 ```
+
+## GitHub Pages Deployment
+
+### Option 1: Automatic Deployment via GitHub Actions (Recommended)
+1. Go to your repository on GitHub and open **Settings** > **Pages**.
+2. Under **Build and deployment** > **Source**, select **GitHub Actions**.
+3. Push to `main` branch. The workflow `.github/workflows/deploy.yml` will automatically build and publish the site.
+
+### Option 2: Deploy to `gh-pages` branch
+```bash
+npm run deploy
+```
+Then in **Settings** > **Pages**, set **Source** to **Deploy from a branch** and select `gh-pages`.
