@@ -1,4 +1,4 @@
-# Serverless QR Quest (MD3 Dark)
+# QR crumbs (Serverless QR Quest — MD3 Dark)
 
 Легковесное статическое SPA-приложение на React + TypeScript (Vite) для создания и прохождения домашнего интерактивного квеста по поиску подарка по QR-кодам.
 
@@ -8,7 +8,13 @@
 
 ## Возможности
 
-- **Material Design 3 (Dark Theme):** Чистый CSS (Vanilla CSS Modules + Custom Properties), строгая геометрия и отступы, 5 динамических цветовых палитр (`violet`, `rose`, `amber`, `emerald`, `cyan`).
+- **Material Design 3 (M3 Dark):** Строгое соответствие спецификации [m3.material.io](https://m3.material.io), Vanilla CSS Modules, CSS Custom Properties, 5 динамических цветовых палитр (`violet`, `rose`, `amber`, `emerald`, `cyan`).
+- **Иконки Material Symbols Rounded:** Официальный вариативный шрифт Google Material Symbols Rounded (`font-variation-settings: 'FILL' 0..1, 'wght' 400`).
+- **Адаптивный интерфейс для мобильных устройств:**
+  - Шапка (Top App Bar): компактная, не ломается на смартфонах.
+  - Floating Action Button (M3 FAB): быстрый запуск режима скриншота на мобильных устройствах.
+  - M3 Bottom Navigation Bar: удобная нижняя панель навигации (Редактор / Превью / QR-код) с pill-индикатором активного раздела.
+- **M3 Outlined Text Fields:** Корректная плавающая рамка (outline) без наложения заливки, с поддержкой плавающего лейбла (floating label) и вспомогательного текста.
 - **3 механики открытия подсказок (`layout`):**
   - **Обычный:** мгновенное отображение заголовка и текста подсказки.
   - **Скретч-блюр:** полупрозрачный слой с `backdrop-filter: blur(12px)` и плавным рассеиванием по тапу.
@@ -27,7 +33,7 @@
 - **Zero UI-Frameworks:** Без Tailwind, MUI, Bootstrap или CSS-in-JS.
 - **lz-string:** сжатие и распаковка данных в URL.
 - **qrcode.react:** векторная генерация SVG QR-кодов.
-- **lucide-react:** векторные иконки.
+- **Material Symbols Rounded:** официальный шрифт иконок Google Material Design 3.
 
 ---
 

@@ -5,18 +5,22 @@
   color: var(--md-sys-color-on-surface);
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
+/* M3 Small Top App Bar */
 .topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background-color: var(--md-sys-color-surface-container-low);
+  height: 64px;
+  padding: 0 24px;
+  background-color: var(--md-sys-color-surface);
   border-bottom: 1px solid var(--md-sys-color-outline-variant);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-sizing: border-box;
 }
 
 .brand {
@@ -37,40 +41,45 @@
 }
 
 .brandTitle {
-  font-size: var(--md-sys-typescale-title-medium);
-  font-weight: 700;
-  letter-spacing: 0.2px;
+  font-size: var(--md-sys-typescale-title-large);
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
 }
 
-.brandSubtitle {
-  font-size: var(--md-sys-typescale-label-small);
-  color: var(--md-sys-color-on-surface-variant);
-}
-
-.topActions {
+/* Desktop Actions in Top Bar */
+.desktopActions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
-/* Mobile Tabs Bar */
-.mobileTabBar {
+/* Mobile Icon Action in Top Bar */
+.mobileTopAction {
   display: none;
-  background-color: var(--md-sys-color-surface-container);
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
-  padding: 6px 12px;
-  position: sticky;
-  top: 69px;
-  z-index: 90;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--md-sys-motion-duration-short) ease;
 }
 
-/* Main Layout Grid */
+.mobileTopAction:hover {
+  background-color: rgba(230, 224, 233, var(--md-sys-state-hover-opacity));
+}
+
+/* Main Content Layout Grid */
 .mainContent {
   flex: 1;
-  max-width: 1280px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: 24px;
+  padding: 32px 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
@@ -84,31 +93,37 @@
   gap: 24px;
 }
 
+/* M3 Outlined Card */
 .sectionCard {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: var(--md-sys-color-surface);
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-large);
-  padding: 20px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
+  box-sizing: border-box;
 }
 
 .sectionHeader {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: var(--md-sys-typescale-title-small);
+  gap: 12px;
+  font-size: var(--md-sys-typescale-title-medium);
   font-weight: 600;
   color: var(--md-sys-color-on-surface);
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
-  padding-bottom: 10px;
+}
+
+.sectionIcon {
+  color: var(--md-sys-color-primary);
+  display: flex;
+  align-items: center;
 }
 
 .formGrid {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 /* Theme Swatches */
@@ -120,15 +135,16 @@
 }
 
 .swatchBtn {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   border-radius: var(--md-sys-shape-corner-full);
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease;
+  transition: transform var(--md-sys-motion-duration-short) ease,
+              box-shadow var(--md-sys-motion-duration-short) ease;
   position: relative;
 }
 
@@ -138,7 +154,7 @@
 
 .swatchSelected {
   border-color: #FFFFFF;
-  box-shadow: 0 0 0 2px var(--md-sys-color-surface-container), 0 0 12px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 2px var(--md-sys-color-surface), 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
 .swatchCheck {
@@ -158,31 +174,31 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 10px 4px;
-  border-radius: var(--md-sys-shape-corner-medium);
-  background-color: var(--md-sys-color-surface-container-high);
+  padding: 12px 6px;
+  border-radius: var(--md-sys-shape-corner-small);
+  background-color: transparent;
   border: 1px solid var(--md-sys-color-outline-variant);
   color: var(--md-sys-color-on-surface-variant);
   cursor: pointer;
-  transition: all 150ms ease;
+  transition: all var(--md-sys-motion-duration-short) ease;
   text-align: center;
 }
 
 .iconBtn:hover {
-  background-color: var(--md-sys-color-surface-container-highest);
-  color: var(--md-sys-color-on-surface);
+  background-color: rgba(230, 224, 233, var(--md-sys-state-hover-opacity));
   border-color: var(--md-sys-color-outline);
+  color: var(--md-sys-color-on-surface);
 }
 
 .iconBtnSelected {
-  background-color: var(--md-sys-color-primary-container) !important;
-  color: var(--md-sys-color-on-primary-container) !important;
-  border-color: var(--md-sys-color-primary) !important;
+  background-color: var(--md-sys-color-secondary-container) !important;
+  color: var(--md-sys-color-on-secondary-container) !important;
+  border-color: var(--md-sys-color-secondary-container) !important;
   font-weight: 600;
 }
 
 .iconBtnLabel {
-  font-size: 11px;
+  font-size: var(--md-sys-typescale-label-small);
   line-height: 1.2;
 }
 
@@ -196,15 +212,15 @@
 .stickySide {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
-/* Density Bar */
+/* Density Card */
 .densityCard {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: var(--md-sys-color-surface);
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-large);
-  padding: 16px 20px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -224,8 +240,8 @@
 
 .densityBadge {
   font-size: var(--md-sys-typescale-label-small);
-  padding: 3px 8px;
-  border-radius: 9999px;
+  padding: 3px 10px;
+  border-radius: var(--md-sys-shape-corner-full);
   font-weight: 600;
 }
 
@@ -248,22 +264,22 @@
   width: 100%;
   height: 6px;
   background-color: var(--md-sys-color-surface-container-highest);
-  border-radius: 9999px;
+  border-radius: var(--md-sys-shape-corner-full);
   overflow: hidden;
 }
 
 .densityProgressFill {
   height: 100%;
   transition: width 300ms ease, background-color 300ms ease;
-  border-radius: 9999px;
+  border-radius: var(--md-sys-shape-corner-full);
 }
 
-/* QR Card in Side Column */
+/* QR Side Card */
 .qrCard {
-  background-color: var(--md-sys-color-surface-container);
+  background-color: var(--md-sys-color-surface);
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-large);
-  padding: 20px;
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -273,7 +289,7 @@
 
 .qrContainer {
   background-color: #FFFFFF;
-  padding: 14px;
+  padding: 16px;
   border-radius: 16px;
   display: flex;
   align-items: center;
@@ -290,28 +306,117 @@
 }
 
 .copiedToast {
-  font-size: var(--md-sys-typescale-label-small);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--md-sys-typescale-label-medium);
   color: #6CDBAC;
   background-color: rgba(108, 219, 172, 0.15);
-  padding: 4px 10px;
-  border-radius: 9999px;
+  padding: 4px 12px;
+  border-radius: var(--md-sys-shape-corner-full);
   animation: fadeIn 200ms ease;
 }
 
+/* Floating Action Button for Mobile */
+.mobileFab {
+  display: none;
+  position: fixed;
+  right: 16px;
+  bottom: 96px;
+  z-index: 95;
+}
+
+/* M3 Mobile Bottom Navigation Bar */
+.bottomNav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background-color: var(--md-sys-color-surface-container);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  z-index: 90;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.bottomNavItems {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-label-medium);
+  font-weight: 500;
+  user-select: none;
+  padding: 6px 0;
+  min-width: 64px;
+  transition: color var(--md-sys-motion-duration-short) ease;
+}
+
+.navPill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 32px;
+  border-radius: var(--md-sys-shape-corner-full);
+  transition: background-color var(--md-sys-motion-duration-short) ease,
+              color var(--md-sys-motion-duration-short) ease;
+}
+
+.navItemActive {
+  color: var(--md-sys-color-on-surface);
+  font-weight: 600;
+}
+
+.navItemActive .navPill {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
 /* Responsive Breakpoints */
-@media (max-width: 960px) {
+@media (max-width: 900px) {
+  .topBar {
+    padding: 0 16px;
+  }
+
+  .desktopActions {
+    display: none;
+  }
+
+  .mobileTopAction {
+    display: inline-flex;
+  }
+
   .mainContent {
     grid-template-columns: 1fr;
-    padding: 16px;
+    padding: 16px 16px 110px 16px;
     gap: 20px;
   }
 
-  .mobileTabBar {
-    display: block;
+  .mobileFab {
+    display: inline-flex;
   }
 
-  /* When tabs are active on mobile */
-  .hideMobile {
+  .bottomNav {
+    display: flex;
+  }
+
+  .hideOnMobile {
     display: none !important;
   }
 }

@@ -1,0 +1,55 @@
+.fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border-radius: var(--md-sys-shape-corner-large);
+  border: none;
+  cursor: pointer;
+  background-color: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  box-shadow: var(--md-sys-elevation-3);
+  transition: all var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-emphasized);
+  user-select: none;
+  font-family: inherit;
+  font-size: var(--md-sys-typescale-label-large);
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  z-index: 95;
+  box-sizing: border-box;
+}
+
+.fab:hover {
+  box-shadow: var(--md-sys-elevation-4);
+  filter: brightness(1.08);
+}
+
+.fab:active {
+  box-shadow: var(--md-sys-elevation-3);
+  filter: brightness(0.95);
+}
+
+/* Standard 56x56 */
+.standard {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+}
+
+/* Extended FAB with text */
+.extended {
+  height: 56px;
+  padding: 0 20px;
+}
+
+/* Secondary variant */
+.secondary {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+/* Surface variant */
+.surface {
+  background-color: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-primary);
+}

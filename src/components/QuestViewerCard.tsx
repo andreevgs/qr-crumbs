@@ -1,13 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import {
-  HelpCircle,
-  ChevronDown,
-  ChevronUp,
-  Lock,
-  Unlock,
-  Eye,
-  RotateCcw,
-} from 'lucide-react';
 import { QuestStep } from '../types';
 import { Icon } from './md3/Icon';
 import { Badge } from './md3/Badge';
@@ -81,8 +72,8 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
             <Button
               variant="text"
               onClick={handleResetPreview}
-              icon={<RotateCcw size={14} />}
-              style={{ height: '28px', padding: '0 8px', fontSize: '12px' }}
+              icon={<Icon name="restart_alt" size={16} />}
+              style={{ height: '32px', padding: '0 8px', fontSize: '12px' }}
             >
               Сброс
             </Button>
@@ -93,7 +84,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
         <div className={styles.headerWrapper}>
           <div className={styles.glow} />
           <div className={styles.iconSquircle}>
-            <Icon name={step.icon} size={34} />
+            <Icon name={step.icon} size={36} />
           </div>
 
           {step.stepBadge && step.stepBadge.trim().length > 0 && (
@@ -136,7 +127,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
                     }
                   }}
                 >
-                  <Eye size={28} />
+                  <Icon name="visibility" size={32} />
                   <span className={styles.blurHintText}>
                     Нажми, чтобы открыть подсказку
                   </span>
@@ -151,7 +142,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
               {!isUnlocked ? (
                 <div className={`${styles.lockBox} ${isShaking ? 'animate-shake' : ''}`}>
                   <div className={styles.lockIconWrap}>
-                    <Lock size={24} />
+                    <Icon name="lock" size={24} />
                   </div>
                   <p className={styles.lockDescription}>
                     Эта подсказка закрыта кодовым замком. Введи пароль для разблокировки:
@@ -159,7 +150,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
 
                   <form className={styles.lockForm} onSubmit={handleUnlock}>
                     <TextField
-                      placeholder="Введи секретное слово или цифры"
+                      placeholder="Введи секретный код"
                       value={codeInput}
                       onChange={(e) => {
                         setCodeInput(e.target.value);
@@ -171,7 +162,7 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
                     <Button
                       type="submit"
                       variant="filled"
-                      icon={<Unlock size={18} />}
+                      icon={<Icon name="lock_open" size={18} />}
                       fullWidth
                     >
                       Разблокировать
@@ -197,10 +188,13 @@ export const QuestViewerCard: React.FC<QuestViewerCardProps> = ({
               aria-expanded={isHintOpen}
             >
               <span className={styles.hintToggleTitle}>
-                <HelpCircle size={18} />
+                <Icon name="help" size={18} />
                 <span>Нужна наводка?</span>
               </span>
-              {isHintOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              <Icon
+                name={isHintOpen ? 'expand_less' : 'expand_more'}
+                size={20}
+              />
             </button>
 
             {isHintOpen && (

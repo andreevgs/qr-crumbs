@@ -1,44 +1,61 @@
 import React from 'react';
-import {
-  Gift,
-  Flame,
-  Snowflake,
-  Search,
-  Heart,
-  Key,
-  Coffee,
-  Sparkles,
-  LucideProps,
-} from 'lucide-react';
 import { StepIcon } from '../../types';
 
-interface IconProps extends Omit<LucideProps, 'ref'> {
-  name: StepIcon;
-}
-
-export const ICON_MAP: Record<StepIcon, React.ComponentType<LucideProps>> = {
-  gift: Gift,
-  flame: Flame,
-  snowflake: Snowflake,
-  search: Search,
-  heart: Heart,
-  key: Key,
-  coffee: Coffee,
-  sparkles: Sparkles,
+export const STEP_ICON_SYMBOLS: Record<StepIcon, string> = {
+  gift: 'redeem',
+  flame: 'local_fire_department',
+  snowflake: 'ac_unit',
+  search: 'search',
+  heart: 'favorite',
+  key: 'key',
+  coffee: 'local_cafe',
+  sparkles: 'auto_awesome',
 };
 
 export const ICON_LABELS: Record<StepIcon, string> = {
   gift: 'Подарок',
   flame: 'Огонь / Тепло',
-  snowflake: 'Холодно / Снежинка',
+  snowflake: 'Снежинка / Холод',
   search: 'Поиск / Лупа',
   heart: 'Сердце / Любовь',
   key: 'Ключ',
-  coffee: 'Кофе / Кухня',
+  coffee: 'Кухня / Кофе',
   sparkles: 'Магия / Финал',
 };
 
-export const Icon: React.FC<IconProps> = ({ name, size = 24, ...props }) => {
-  const Component = ICON_MAP[name] || Gift;
-  return <Component size={size} {...props} />;
+export interface IconProps extends React.HTMLAttributes<HTMLSpanElement> {
+  name: string;
+  size?: number;
+  fill?: boolean;
+  weight?: number;
+}
+
+export const Icon: React.FC<IconProps> = ({
+  name,
+  size = 24,
+  fill = false,
+  weight = 400,
+  className = '',
+  style,
+  ...props
+}) => {
+  // If `name` matches a StepIcon key, map it to the corresponding Material Symbol name
+  const symbol = (STEP_ICON_SYMBOLS as Record<string, string>)[name] || name;
+
+  return (
+    <span
+      className={`material-symbols-rounded ${className}`}
+      style={{
+        fontSize: `${size}px`,
+        width: `${size}px`,
+        height: `${size}px`,
+        fontVariationSettings: `'FILL' ${fill ? 1 : 0}, 'wght' ${weight}, 'GRAD' 0, 'opsz' ${size}`,
+        ...style,
+      }}
+      aria-hidden="true"
+      {...props}
+    >
+      {symbol}
+    </span>
+  );
 };

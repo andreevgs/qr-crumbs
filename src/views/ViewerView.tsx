@@ -1,8 +1,8 @@
 import React, { useMemo, useEffect } from 'react';
-import { AlertCircle, PlusCircle } from 'lucide-react';
 import { decodeQuestStep } from '../utils/codec';
 import { QuestViewerCard } from '../components/QuestViewerCard';
 import { Button } from '../components/md3/Button';
+import { Icon } from '../components/md3/Icon';
 import styles from './ViewerView.module.css';
 
 export interface ViewerViewProps {
@@ -17,9 +17,9 @@ export const ViewerView: React.FC<ViewerViewProps> = ({ payload, onNavigate }) =
 
   useEffect(() => {
     if (questStep) {
-      document.title = `${questStep.title} — QR Quest`;
+      document.title = `${questStep.title} — QR crumbs`;
     } else {
-      document.title = 'Ошибка — QR Quest';
+      document.title = 'Ошибка — QR crumbs';
     }
   }, [questStep]);
 
@@ -31,7 +31,7 @@ export const ViewerView: React.FC<ViewerViewProps> = ({ payload, onNavigate }) =
         ) : (
           <div className={styles.errorCard}>
             <div className={styles.errorIconWrapper}>
-              <AlertCircle size={36} />
+              <Icon name="error" size={40} />
             </div>
             <h1 className={styles.errorTitle}>Подсказка не найдена</h1>
             <p className={styles.errorDescription}>
@@ -40,7 +40,7 @@ export const ViewerView: React.FC<ViewerViewProps> = ({ payload, onNavigate }) =
             </p>
             <Button
               variant="filled"
-              icon={<PlusCircle size={18} />}
+              icon={<Icon name="add" size={20} />}
               onClick={() => onNavigate('#/create')}
             >
               Конструктор квеста
@@ -49,7 +49,7 @@ export const ViewerView: React.FC<ViewerViewProps> = ({ payload, onNavigate }) =
         )}
 
         <footer className={styles.footer}>
-          <span>Serverless QR Quest</span>
+          <span>QR crumbs</span>
           <span>•</span>
           <a
             href="#/create"

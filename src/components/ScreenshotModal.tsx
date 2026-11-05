@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
-import { X } from 'lucide-react';
+import { Icon } from './md3/Icon';
 import styles from './ScreenshotModal.module.css';
 
 export interface ScreenshotModalProps {
@@ -115,7 +115,7 @@ export const ScreenshotModal: React.FC<ScreenshotModalProps> = ({
         </div>
 
         <button type="button" className={styles.closeBtn} onClick={onClose}>
-          <X size={16} />
+          <Icon name="close" size={18} />
           <span>Закрыть (Esc)</span>
         </button>
       </div>
@@ -152,7 +152,7 @@ export const ScreenshotModal: React.FC<ScreenshotModalProps> = ({
         {/* Footer info */}
         <div className={styles.cardFooter}>
           <span className={styles.scanInstruction}>Отсканируй камерой телефона</span>
-          <span className={styles.appName}>QR Quest</span>
+          <span className={styles.appName}>QR crumbs</span>
         </div>
       </div>
 
