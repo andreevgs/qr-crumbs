@@ -7,6 +7,7 @@ export type StepIcon =
   | 'celebration'
   | 'local_fire_department'
   | 'ac_unit'
+  | 'water_drop'
   | 'search'
   | 'vpn_key'
   | 'lock'

@@ -11,6 +11,8 @@ const LEGACY_ICON_MAP: Record<string, string> = {
   heart: 'favorite',
   key: 'vpn_key',
   sparkles: 'celebration',
+  drop: 'water_drop',
+  water: 'water_drop',
 };
 
 /**

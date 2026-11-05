@@ -18,6 +18,7 @@ export const ICON_OPTIONS: IconOption[] = [
   { id: 'favorite', label: 'Сердце' },
   { id: 'local_fire_department', label: 'Огонь / Тепло' },
   { id: 'ac_unit', label: 'Снежинка / Мороз' },
+  { id: 'water_drop', label: 'Капля / Вода' },
   { id: 'search', label: 'Поиск / Лупа' },
   { id: 'vpn_key', label: 'Ключ' },
   { id: 'lock', label: 'Замок' },
