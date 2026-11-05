@@ -22,6 +22,7 @@ export type StepIcon =
   | 'potted_plant'
   | 'pets'
   | 'directions_car'
+  | 'sports_esports'
   | 'extension'
   | 'lightbulb'
   | 'music_note'

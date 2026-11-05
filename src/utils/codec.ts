@@ -13,6 +13,10 @@ const LEGACY_ICON_MAP: Record<string, string> = {
   sparkles: 'celebration',
   drop: 'water_drop',
   water: 'water_drop',
+  gamepad: 'sports_esports',
+  game: 'sports_esports',
+  videogame_asset: 'sports_esports',
+  controller: 'sports_esports',
 };
 
 /**

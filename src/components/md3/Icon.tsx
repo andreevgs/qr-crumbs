@@ -33,6 +33,7 @@ export const ICON_OPTIONS: IconOption[] = [
   { id: 'potted_plant', label: 'Растение' },
   { id: 'pets', label: 'Лапка / Питомец' },
   { id: 'directions_car', label: 'Машина' },
+  { id: 'sports_esports', label: 'Геймпад / Игры' },
   { id: 'extension', label: 'Пазл' },
   { id: 'lightbulb', label: 'Лампочка' },
   { id: 'music_note', label: 'Музыка' },
